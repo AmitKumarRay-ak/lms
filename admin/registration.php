@@ -20,14 +20,14 @@ if (isset($_POST["submit"])) {
         ?>
         <script>
             alert("Registration Successfull");
-            window.location="../login.php";
+            window.location = "../login.php";
         </script>
         <?php
     } else {
         ?>
         <script>
             alert("The Username Allready Exist");
-            window.location="../login.php";
+            window.location = "../login.php";
         </script>
         <?php
     }
@@ -141,8 +141,7 @@ if (isset($_POST["submit"])) {
                                             </div>
                                             <div class="form-group mt-2">
                                                 <label class="ms-3 mt-2" for="">Allready have an account : </label>
-                                                <button class="badge rounded-pill text-bg-light"><a
-                                                        href="../login.php"
+                                                <button class="badge rounded-pill text-bg-light"><a href="../login.php"
                                                         class="text-decoration-none">Login</a></button>
                                             </div>
                                         </div>

@@ -60,7 +60,7 @@ session_start();
                     <ul class="navbar-nav ms-auto mb-2 mb-lg-0" style="align-items: right;">
 
                         <!------------------------ new admin icon ---------------------->
-                        <li class="btn nav-item"><a class="text-decoration-none" href="">
+                        <li class="btn nav-item"><a class="text-decoration-none" href="admin_status.php">
                         <i class="fa-solid fa-user-clock"></i>
                                 <span class="badge rounded-pill text-bg-info">
                                     <?php
