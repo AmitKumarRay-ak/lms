@@ -11,7 +11,7 @@ if (isset($_POST['submit'])) {
     if ($_POST['user'] == 'admin') {
 
         $count = 0;
-        $res = mysqli_query($db, "SELECT * FROM `admin` WHERE username = '$_POST[username]' && password = '$_POST[password]' ;");
+        $res = mysqli_query($db, "SELECT * FROM `admin` WHERE username = '$_POST[username]' AND password = '$_POST[password]' AND status='yes' ");
 
         $row = mysqli_fetch_assoc($res);
 

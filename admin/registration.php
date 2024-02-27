@@ -16,7 +16,7 @@ if (isset($_POST["submit"])) {
         }
     }
     if ($count == 0) {
-        mysqli_query($db, "INSERT INTO `admin`(`first`, `last`, `username`, `password`, `email`, `contact`, `pic`) VALUES ('$_POST[first]','$_POST[last]','$_POST[username]','$_POST[password]','$_POST[email]','$_POST[contact]','p.png');");
+        mysqli_query($db, "INSERT INTO `admin`(`first`, `last`, `username`, `password`, `email`, `contact`, `pic`,`status`) VALUES ('$_POST[first]','$_POST[last]','$_POST[username]','$_POST[password]','$_POST[email]','$_POST[contact]','p.png','');");
         ?>
         <script>
             alert("Registration Successfull");

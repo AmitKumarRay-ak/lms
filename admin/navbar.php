@@ -22,6 +22,9 @@ session_start();
     <?php
     $r = mysqli_query($db, "SELECT COUNT(status) as total FROM message WHERE status='no' and sender='student' ");
     $c = mysqli_fetch_assoc($r);
+
+    $sql_app = mysqli_query($db,"SELECT COUNT(status) as total FROM admin WHERE status='' ");
+    $a=mysqli_fetch_assoc($sql_app);
     ?>
 
 
@@ -51,7 +54,22 @@ session_start();
                                     class="fa-solid fa-users"></i> STUDENT-INFO</a></li>
                         <li class="btn nav-item"><a class="text-decoration-none" href="fine.php">FINES</a></li>
                     </ul>
+
+
+
                     <ul class="navbar-nav ms-auto mb-2 mb-lg-0" style="align-items: right;">
+
+                        <!------------------------ new admin icon ---------------------->
+                        <li class="btn nav-item"><a class="text-decoration-none" href="">
+                        <i class="fa-solid fa-user-clock"></i>
+                                <span class="badge rounded-pill text-bg-info">
+                                    <?php
+                                    echo $a['total'];
+                                    ?>
+                                </span>
+                            </a>
+                        </li>
+
 
                         <!------------------------ messaage icon ---------------------->
                         <li class="btn nav-item"><a class="text-decoration-none" href="message.php">
