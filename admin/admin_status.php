@@ -93,6 +93,7 @@ include("navbar.php");
                                 } ?>
                             </tbody>
                         </table>
+                        <!-- <i class="fa-solid fa-xmark"></i> -->
                     </div>
                 </div>
 
@@ -143,6 +144,8 @@ include("navbar.php");
                             } ?>
                         </tbody>
                     </table>
+                    <button class="btn btn-danger ms-3"><i class="fa-solid fa-xmark"></i></button>
+                    <button class="btn btn-success ms-3"><i class="fa-solid fa-check"></i></button>
                 </div>
             </div>
             <?php
