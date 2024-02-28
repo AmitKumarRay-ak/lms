@@ -37,6 +37,31 @@ include("navbar.php");
     </div>
 
 
+    <!-- all admin delete -->
+    <form method="POST" action="">
+        <h3 class="ms-5">Delete All New Registration For Admin: (Delete All in One Click)</h3>
+        <button class="btn btn-danger ms-5" type="submit" name="all_admin_delete"><i
+                class="fa-solid fa-trash fa-beat-fade"></i>&nbsp;
+            ALL DELETE</button>
+    </form>
+
+    <?php
+    if (isset($_POST['all_admin_delete'])) {
+        $query = "DELETE FROM `admin` WHERE `status` != 'yes' AND `status`!='' ";
+        $result = mysqli_query($db, $query);
+
+        if ($result) {
+            ?>
+            <script>
+                alert("Deleted Successfuly");
+                window.location = "admin_status.php";
+            </script>
+            <?php
+        }
+    }
+    ?>
+    <!-- code end all admin delete -->
+
 
     <!------------------------------------ this div use for scrollview ---------------------------------->
 
@@ -98,8 +123,8 @@ include("navbar.php");
                                                 ACCEPT</a>
                                             <a class="btn btn-danger ms-3"
                                                 href="new_admin_delete_page.php?id=<?php echo $data['id']; ?>"><i
-                                                    class="fa-solid fa-xmark fa-beat"></i>&nbsp;
-                                                REMOVE</a>
+                                                    class="fa-solid fa-trash fa-beat-fade"></i>&nbsp;
+                                                DELETE</a>
                                         </td>
                                     </tr>
 
@@ -163,8 +188,8 @@ include("navbar.php");
                                             ACCEPT</a>
                                         <a class="btn btn-danger ms-3"
                                             href="new_admin_delete_page.php?id=<?php echo $data['id']; ?>"><i
-                                                class="fa-solid fa-xmark fa-beat"></i>&nbsp;
-                                            REMOVE</a>
+                                                class="fa-solid fa-trash fa-beat-fade"></i>&nbsp;
+                                            DELETE</a>
                                     </td>
                                 </tr>
 

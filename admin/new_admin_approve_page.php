@@ -36,31 +36,6 @@ include("navbar.php");
                     </div>
 
 
-                    <!-- ------------------------- for edit data by form -------------------------- -->
-                    <?php
-                    // if (isset($_POST['submit'])) {
-                    
-                    //     $first = $_POST['first'];
-                    //     $last = $_POST['last'];
-                    //     $username = $_POST['username'];
-                    //     $email = $_POST['email'];
-                    //     $contact = $_POST['contact'];
-                    //     $status = $row['status'];
-                    
-                    //     $sql1 = "UPDATE `admin` SET `first`='$first',`last`='$last',`username`='$username',`email`='$email',`contact`='$contact',`status`='$status' ";
-                    
-                    //     if (mysqli_query($db, $sql1)) {
-                    //             ?>
-
-                    <script>
-                        //             alert("Saved Successfully");
-                        //             window.location="admin_status.php";
-                    </script>
-
-                    <?php
-                    //     }
-                    // }
-                    ?>
 
 
 
@@ -94,14 +69,38 @@ include("navbar.php");
                         $email = $_POST['email'];
                         $contact = $_POST['contact'];
                         $status = $_POST['status'];
-                        
+
+                        $query = "UPDATE `admin` SET `first`='$first',`last`='$last',`username`='$username',`email`='$email',`contact`='$contact',`status`='$status' WHERE `id`='$id' ";
+                        $result = mysqli_query($db, $query);
+
+                        if (!$result) {
+                            die("query failed" . mysqli_error($db));
+                        } else {
+
+                            if ($status == "yes") {
+                                ?>
+                    <script>
+                        alert("You Approved Someone AS a Admin Successfuly");
+                        window.location = "admin_status.php";
+                    </script>
+                    <?php
+                            } else {
+                                ?>
+                    <script>
+                        alert("Approved Cancelled");
+                        window.location = "admin_status.php";
+                    </script>
+                    <?php
+
+                            }
+                        }
                     }
                     ?>
 
 
 
 
-                    <form method="POST" action="">
+                    <form method="POST" action="new_admin_approve_page.php?id_new=<?php echo $id; ?>">
                         <center>
                             <table class="table  table-info  text-wrap tb1">
 
@@ -109,7 +108,7 @@ include("navbar.php");
                                 <tr>
                                     <td><b>First Name: </b></td>
                                     <td>
-                                        <input class="form-control" type="text" name="first"
+                                        <input class="form-control" type="text" name="first" readonly
                                             value="<?php echo $row['first']; ?>">
                                     </td>
                                 </tr>
@@ -117,7 +116,7 @@ include("navbar.php");
                                 <tr>
                                     <td><b>Last Name: </b></td>
                                     <td>
-                                        <input class="form-control" type="text" name="last"
+                                        <input class="form-control" type="text" name="last" readonly
                                             value="<?php echo $row['last']; ?>">
                                     </td>
                                 </tr>
@@ -125,7 +124,7 @@ include("navbar.php");
                                 <tr>
                                     <td><b>Username: </b></td>
                                     <td>
-                                        <input class="form-control" type="text" name="username"
+                                        <input class="form-control" type="text" name="username" readonly
                                             value="<?php echo $row['username']; ?>">
                                     </td>
                                 </tr>
@@ -133,7 +132,7 @@ include("navbar.php");
                                 <tr>
                                     <td><b>Email: </b></td>
                                     <td>
-                                        <input class="form-control" type="text" name="email"
+                                        <input class="form-control" type="text" name="email" readonly
                                             value="<?php echo $row['email']; ?>">
                                     </td>
                                 </tr>
@@ -141,7 +140,7 @@ include("navbar.php");
                                 <tr>
                                     <td><b>Contact: </b></td>
                                     <td>
-                                        <input class="form-control" type="text" name="contact"
+                                        <input class="form-control" type="text" name="contact" readonly
                                             value="<?php echo $row['contact']; ?>">
                                     </td>
                                 </tr>
@@ -149,7 +148,7 @@ include("navbar.php");
                                 <tr>
                                     <td><b>Status: </b></td>
                                     <td>
-                                        <input class="form-control" type="text" name="contact" placeholder="Type yes"
+                                        <input class="form-control" type="text" name="status" placeholder="Type yes"
                                             value="<?php echo $row['status']; ?>">
                                     </td>
                                 </tr>
