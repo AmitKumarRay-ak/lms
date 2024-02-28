@@ -99,7 +99,7 @@ session_start();
                     ?>
 
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                        <li class="btn nav-item"><a class="text-decoration-none" href="index.php">HOME</a></li>
+                        <li class="btn nav-item"><a class="text-decoration-none" href="../index.php">HOME</a></li>
                         <li class="btn nav-item"><a class="text-decoration-none" href="books.php">BOOKS</a></li>
                         <li class="btn nav-item"><a class="text-decoration-none" href="feedback.php">FEEDBACK</a></li>
                     </ul>

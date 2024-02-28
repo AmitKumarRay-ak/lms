@@ -45,7 +45,7 @@ include("navbar.php");
 
         <?php
         if (isset($_POST['submit'])) {
-            $q = mysqli_query($db, "SELECT first,last,username,email,contact FROM `admin` WHERE username like '%$_POST[search]%' AND status='' ");
+            $q = mysqli_query($db, "SELECT id,first,last,username,email,contact FROM `admin` WHERE username like '%$_POST[search]%' AND status='' ");
 
             if (mysqli_num_rows($q) == 0) {
                 echo "<br><br><br><br><br>
@@ -58,11 +58,13 @@ include("navbar.php");
                         <table class="table table-bordered border-primary">
                             <thead>
                                 <tr class="table-warning">
+                                    <th scope="col">ID</th>
                                     <th scope="col">First</th>
                                     <th scope="col">Last</th>
                                     <th scope="col">Username</th>
                                     <th scope="col">Email</th>
                                     <th scope="col">Contact</th>
+                                    <th scope="col">Action</th>
                                 </tr>
                                 <?php
 
@@ -72,8 +74,11 @@ include("navbar.php");
                                 <tbody>
                                     <tr class="table-primary">
                                         <th scope="row">
-                                            <?php echo $data['first']; ?>
+                                            <?php echo $data['id']; ?>
                                         </th>
+                                        <td>
+                                            <?php echo $data['first']; ?>
+                                        </td>
                                         <td>
                                             <?php echo $data['last']; ?>
                                         </td>
@@ -86,6 +91,16 @@ include("navbar.php");
                                         <td>
                                             <?php echo $data['contact']; ?>
                                         </td>
+                                        <td>
+                                            <a class="btn btn-success ms-3"
+                                                href="new_admin_approve_page.php?id=<?php echo $data['id']; ?>"><i
+                                                    class="fa-solid fa-check fa-beat"></i>&nbsp;
+                                                ACCEPT</a>
+                                            <a class="btn btn-danger ms-3"
+                                                href="new_admin_delete_page.php?id=<?php echo $data['id']; ?>"><i
+                                                    class="fa-solid fa-xmark fa-beat"></i>&nbsp;
+                                                REMOVE</a>
+                                        </td>
                                     </tr>
 
                                     <?php
@@ -93,7 +108,6 @@ include("navbar.php");
                                 } ?>
                             </tbody>
                         </table>
-                        <!-- <i class="fa-solid fa-xmark"></i> -->
                     </div>
                 </div>
 
@@ -107,24 +121,29 @@ include("navbar.php");
                     <table class="table table-bordered border-primary">
                         <thead>
                             <tr class="table-warning">
+                                <th scope="col">ID</th>
                                 <th scope="col">First</th>
                                 <th scope="col">Last</th>
                                 <th scope="col">Username</th>
                                 <th scope="col">Email</th>
                                 <th scope="col">Contact</th>
+                                <th scope="col">Action</th>
                             </tr>
                             <?php
-                            $sql = "SELECT first,last,username,email,contact FROM `admin` WHERE status='' ";
+                            $sql = "SELECT id,first,last,username,email,contact FROM `admin` WHERE status='' ";
                             $result = mysqli_query($db, $sql);
 
-                            while ($data = mysqli_fetch_array($result)) { ?>
-
+                            while ($data = mysqli_fetch_array($result)) {
+                                ?>
                             </thead>
                             <tbody>
                                 <tr class="table-primary">
                                     <th scope="row">
-                                        <?php echo $data['first']; ?>
+                                        <?php echo $data['id']; ?>
                                     </th>
+                                    <td>
+                                        <?php echo $data['first']; ?>
+                                    </td>
                                     <td>
                                         <?php echo $data['last']; ?>
                                     </td>
@@ -137,6 +156,16 @@ include("navbar.php");
                                     <td>
                                         <?php echo $data['contact']; ?>
                                     </td>
+                                    <td>
+                                        <a class="btn btn-success ms-3"
+                                            href="new_admin_approve_page.php?id=<?php echo $data['id']; ?>"><i
+                                                class="fa-solid fa-check fa-beat"></i>&nbsp;
+                                            ACCEPT</a>
+                                        <a class="btn btn-danger ms-3"
+                                            href="new_admin_delete_page.php?id=<?php echo $data['id']; ?>"><i
+                                                class="fa-solid fa-xmark fa-beat"></i>&nbsp;
+                                            REMOVE</a>
+                                    </td>
                                 </tr>
 
                                 <?php
@@ -144,14 +173,14 @@ include("navbar.php");
                             } ?>
                         </tbody>
                     </table>
-                    <button class="btn btn-danger ms-3"><i class="fa-solid fa-xmark"></i></button>
-                    <button class="btn btn-success ms-3"><i class="fa-solid fa-check"></i></button>
                 </div>
             </div>
             <?php
         }
         ?>
     </div>
+
+
 
 
 </body>
