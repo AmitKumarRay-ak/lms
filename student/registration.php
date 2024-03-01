@@ -16,7 +16,7 @@ if (isset($_POST["submit"])) {
         }
     }
     if ($count == 0) {
-        mysqli_query($db, "INSERT INTO `student`(`first`, `last`, `username`, `password`, `roll`, `email`, `contact`,`pic`) VALUES ('$_POST[first]','$_POST[last]','$_POST[username]','$_POST[password]','$_POST[roll]','$_POST[email]','$_POST[contact]','pic.png');");
+        mysqli_query($db, "INSERT INTO `student`(`first`, `last`, `username`, `password`, `roll`, `email`, `contact`,`pic`) VALUES ('$_POST[first]','$_POST[last]','$_POST[username]','$_POST[password]','$_POST[roll]','$_POST[email]','$_POST[contact]','p.png');");
         ?>
         <script>
             alert("Registration Successfull");
