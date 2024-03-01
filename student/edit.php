@@ -78,7 +78,6 @@ include("navbar.php");
                             $last = $row['last'];
                             $username = $row['username'];
                             $password = $row['password'];
-                            $cpassword = $row['cpassword'];
                             $email = $row['email'];
                             $contact = $row['contact'];
                         }
@@ -95,12 +94,11 @@ include("navbar.php");
                             $last = $_POST['last'];
                             $username = $_POST['username'];
                             $password = $_POST['password'];
-                            $cpassword = $_POST['cpassword'];
                             $email = $_POST['email'];
                             $contact = $_POST['contact'];
                             $pic = $_FILES['file']['name'];
 
-                            $sql1 = "UPDATE `student` SET `pic`='$pic',`first`='$first',`last`='$last',`username`='$username',`password`='$password',`email`='$email',`contact`='$contact',`cpassword`='$cpassword' WHERE username='" . $_SESSION['login_user'] . "' ";
+                            $sql1 = "UPDATE `student` SET `pic`='$pic',`first`='$first',`last`='$last',`username`='$username',`password`='$password',`email`='$email',`contact`='$contact' WHERE username='" . $_SESSION['login_user'] . "' ";
 
                             if (mysqli_query($db, $sql1)) {
                                 ?>
@@ -148,14 +146,6 @@ include("navbar.php");
                                 <td>
                                     <input class="form-control" type="text" name="password"
                                         value="<?php echo $password; ?>">
-                                </td>
-                            </tr>
-
-                            <tr>
-                                <td><b>Confirm Password: </b></td>
-                                <td>
-                                    <input class="form-control" type="text" name="cpassword"
-                                        value="<?php echo $cpassword; ?>">
                                 </td>
                             </tr>
 

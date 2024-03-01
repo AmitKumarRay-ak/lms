@@ -119,13 +119,13 @@ if (isset($_POST["submit"])) {
                                             <label for="exampleInputEmail1">Password</label>
                                             <div class="form-group">
                                                 <input type="text" class="form-control" name="password" required
-                                                    placeholder="password">
+                                                    placeholder="Password">
                                             </div>
 
                                             <label for="exampleInputEmail1">Roll No.</label>
                                             <div class="form-group">
                                                 <input type="text" class="form-control" name="roll" required
-                                                    placeholder="User Name">
+                                                    placeholder="Roll No.">
                                             </div>
 
                                             <label for="exampleInputEmail1">Email</label>
