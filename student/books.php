@@ -294,7 +294,7 @@ include("navbar.php");
             $row1 = mysqli_fetch_assoc($sql1);
             $count1 = mysqli_num_rows($sql1);
 
-            if ($count1!=0) {
+            if ($count1 != 0) {
                 mysqli_query($db, "INSERT INTO `issue_book`(`username`, `bid`, `approv`, `issue`, `return`) VALUES ('$_SESSION[login_user]','$_POST[bid]','','','')");
                 ?>
                 <script>
