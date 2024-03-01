@@ -61,6 +61,10 @@ include("navbar.php");
             background-color: #acc3e8;
         }
 
+        tr td input {
+            width: 100px;
+        }
+
         @media screen and (max-height: 450px) {
             .sidenav {
                 padding-top: 15px;
@@ -69,6 +73,22 @@ include("navbar.php");
             .sidenav a {
                 font-size: 18px;
             }
+        }
+
+
+        .responsive-div {
+            width: 100%;
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f44f4f;
+            color: white;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            box-sizing: border-box;
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
     </style>
 </head>
@@ -115,68 +135,92 @@ include("navbar.php");
 
 
     <?php
-    if (isset($_SESSION['login_user'])) {
-        $q = mysqli_query($db, "SELECT * FROM `issue_book` WHERE username='$_SESSION[login_user]' and approv='' ;");
+    // if (isset($_SESSION['login_user'])) {
+    $q = mysqli_query($db, "SELECT * FROM `issue_book` WHERE username='$_SESSION[login_user]' and approv='' ;");
 
-        if (mysqli_num_rows($q) == 0) {
-            echo "There is no any request";
-        } else {
+    if (mysqli_num_rows($q) == 0) {
             ?>
+            <div class="responsive-div">
+                <h2>There is no any request</h2>
+            </div>
+            <?php
+    } else {
+        ?>
 
     <div class="row m-3">
         <div class="col">
-            <table class="table table-bordered border-primary">
-                <thead>
-                    <tr class="table-warning">
-                        <th scope="col">Book ID</th>
-                        <th scope="col">username</th>
-                        <th scope="col">Approve Status</th>
-                        <th scope="col">Issue Date</th>
-                        <th scope="col">Return Date</th>
-                    </tr>
-                    <?php
-            
-                    while ($data = mysqli_fetch_array($q)) { ?>
 
-                </thead>
-                <tbody>
-                    <tr class="table-primary">
-                        <th scope="row">
-                            <?php echo $data['bid']; ?>
-                        </th>
-                        <td>
-                            <?php echo $data['username']; ?>
-                        </td>
-                        <td>
-                            <?php echo $data['approv']; ?>
-                        </td>
-                        <td>
-                            <?php echo $data['issue']; ?>
-                        </td>
-                        <td>
-                            <?php echo $data['return']; ?>
-                        </td>
-                    </tr>
+            <form method="POST" action="">
 
-                    <?php
+                <table class="table table-bordered border-primary">
+                    <thead>
+                        <tr class="table-warning">
+                            <th scope="col">Select</th>
+                            <th scope="col">Book ID</th>
+                            <th scope="col">username</th>
+                            <th scope="col">Approve Status</th>
+                            <th scope="col">Issue Date</th>
+                            <th scope="col">Return Date</th>
+                        </tr>
+                        <?php
 
-                    } ?>
-                </tbody>
-            </table>
+                        while ($data = mysqli_fetch_array($q)) { ?>
+
+                    </thead>
+                    <tbody>
+                        <tr class="table-primary">
+                            <td><input style="" type="checkbox" name="check[]" value="<?php echo $data['bid']; ?>">
+                            </td>
+                            <td>
+                                <?php echo $data['bid']; ?>
+                            </td>
+                            <td>
+                                <?php echo $data['username']; ?>
+                            </td>
+                            <td>
+                                <?php echo $data['approv']; ?>
+                            </td>
+                            <td>
+                                <?php echo $data['issue']; ?>
+                            </td>
+                            <td>
+                                <?php echo $data['return']; ?>
+                            </td>
+                        </tr>
+
+                        <?php
+
+                        } ?>
+                    </tbody>
+                </table>
+                <p align="center"><button class="btn btn-warning" type="submit" name="delete"
+                        onclick="location.reload()">Delete</button></p>
+
+            </form>
         </div>
     </div>
 
     <?php
-        }
-    }
-    else
-    {
-        echo "<br><br><br><br>";
-        echo "<h2>";
-        echo "Please Login First To See the Book Request-info.";
-        echo "</h2>";
     }
     ?>
+
+
+    <?php
+    if (isset($_POST['delete'])) {
+        if (isset($_POST['check'])) {
+            foreach ($_POST['check'] as $delete_id) {
+                mysqli_query($db, "DELETE FROM `issue_book` WHERE `bid`='$delete_id' AND `username`='{$_SESSION['login_user']}' LIMIT 1");
+                ?>
+    <script>
+        alert("selected book has been deleted");
+        window.location = "request.php";
+    </script>
+    <?php
+            }
+        }
+    }
+    ?>
+
 
 </body>
 
