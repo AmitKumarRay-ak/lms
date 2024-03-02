@@ -21,6 +21,13 @@ include("navbar.php");
         .form-control {
             height: 30px;
         }
+
+        @media (min-width: 400px) and (max-width: 1080px) {
+
+            .table {
+                width: 90%;
+            }
+        }
     </style>
 </head>
 
@@ -78,7 +85,6 @@ include("navbar.php");
                             $last = $row['last'];
                             $username = $row['username'];
                             $password = $row['password'];
-                            $cpassword = $row['cpassword'];
                             $email = $row['email'];
                             $contact = $row['contact'];
                         }
@@ -89,24 +95,23 @@ include("navbar.php");
                         <?php
                         if (isset($_POST['submit'])) {
 
-                            move_uploaded_file($_FILES['file']['tmp_name'],"images/".$_FILES['file']['name']);
+                            move_uploaded_file($_FILES['file']['tmp_name'], "images/" . $_FILES['file']['name']);
 
                             $first = $_POST['first'];
                             $last = $_POST['last'];
                             $username = $_POST['username'];
                             $password = $_POST['password'];
-                            $cpassword = $_POST['cpassword'];
                             $email = $_POST['email'];
                             $contact = $_POST['contact'];
                             $pic = $_FILES['file']['name'];
 
-                            $sql1 = "UPDATE `admin` SET `pic`='$pic',`first`='$first',`last`='$last',`username`='$username',`password`='$password',`email`='$email',`contact`='$contact',`cpassword`='$cpassword' WHERE username='" . $_SESSION['login_user'] . "' ";
+                            $sql1 = "UPDATE `admin` SET `pic`='$pic',`first`='$first',`last`='$last',`username`='$username',`password`='$password',`email`='$email',`contact`='$contact' WHERE username='" . $_SESSION['login_user'] . "' ";
 
                             if (mysqli_query($db, $sql1)) {
                                 ?>
                                 <script>
                                     alert("Saved Successfully");
-                                    window.location="profile.php";
+                                    window.location = "profile.php";
                                 </script>
                                 <?php
                             }
@@ -148,14 +153,6 @@ include("navbar.php");
                                 <td>
                                     <input class="form-control" type="text" name="password"
                                         value="<?php echo $password; ?>">
-                                </td>
-                            </tr>
-
-                            <tr>
-                                <td><b>Confirm Password: </b></td>
-                                <td>
-                                    <input class="form-control" type="text" name="cpassword"
-                                        value="<?php echo $cpassword; ?>">
                                 </td>
                             </tr>
 

@@ -71,6 +71,17 @@ include("navbar.php");
                 font-size: 18px;
             }
         }
+        @media (min-width: 350px) and (max-width: 640px) {
+            .row{
+                width: 90%;
+                overflow-x: scroll;
+                padding: 0;
+                margin: 0;
+            }
+            .table {
+                width: 90%;
+            }
+        }
     </style>
 </head>
 

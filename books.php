@@ -71,6 +71,17 @@ include("navbar.php");
                 font-size: 18px;
             }
         }
+        @media (min-width: 350px) and (max-width: 640px) {
+            .row{
+                width: 90%;
+                overflow-x: scroll;
+                padding: 0;
+                margin: 0;
+            }
+            .table {
+                width: 90%;
+            }
+        }
     </style>
 </head>
 
@@ -294,7 +305,7 @@ include("navbar.php");
             $row1 = mysqli_fetch_assoc($sql1);
             $count1 = mysqli_num_rows($sql1);
 
-            if ($count1!=0) {
+            if ($count1 != 0) {
                 mysqli_query($db, "INSERT INTO `issue_book`(`username`, `bid`, `approv`, `issue`, `return`) VALUES ('$_SESSION[login_user]','$_POST[bid]','','','')");
                 ?>
                 <script>

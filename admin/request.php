@@ -83,6 +83,32 @@ include("navbar.php");
         .container h3 {
             color: white;
         }
+
+        @media (min-width: 350px) and (max-width: 800px) {
+            .container {
+                width: 90%;
+                overflow-x: scroll;
+            }
+
+            .table {
+                width: 90%;
+            }
+            
+            .form-outline{
+                display: block;
+                justify-content: center;
+                align-items: center;
+                padding: 10px;
+            }
+
+            .row .col h3{
+                margin-top: 20px;
+            }
+
+            .res{
+                margin: 10px;
+            }
+        }
     </style>
 </head>
 
@@ -137,11 +163,11 @@ include("navbar.php");
                     <form action="" method="POST" name="form1">
                         <div class="d-flex justify-content-end mt-3">
                             <div class="form-outline" data-mdb-input-init>
-                                <input class="rounded-pill border border-danger p-2" type="text" name="username"
+                                <input class="res rounded-pill border border-danger p-2" type="text" name="username"
                                     placeholder="username" required>
-                                <input class="rounded-pill border border-danger p-2" type="text" name="bid"
+                                <input class="res rounded-pill border border-danger p-2" type="text" name="bid"
                                     placeholder="book id" required>
-                                <button type="submit" name="submit" class="btn btn-default border border-warning me-4">
+                                <button type="submit" name="submit" class="res btn btn-default border border-warning me-4">
                                     <i class="fa-solid fa-magnifying-glass fa-beat" style="color: #c99e26;"></i>
                                 </button>
                             </div>
@@ -149,17 +175,16 @@ include("navbar.php");
                     </form>
                 </div>
 
-                
+
                 <?php
-                if(isset($_POST['submit']))
-                {
-                    $_SESSION['name']=$_POST['username'];
-                    $_SESSION['bid']=$_POST['bid'];
+                if (isset($_POST['submit'])) {
+                    $_SESSION['name'] = $_POST['username'];
+                    $_SESSION['bid'] = $_POST['bid'];
                     ?>
-                    <script>
-                        window.location="approve.php";
-                    </script>
-                    <?php
+                <script>
+                    window.location = "approve.php";
+                </script>
+                <?php
                 }
                 ?>
                 <!---------------------------------End search box for finding request book ------------------------------------->

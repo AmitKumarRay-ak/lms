@@ -21,13 +21,20 @@ include("navbar.php");
         .form-control {
             height: 30px;
         }
+
+        @media (min-width: 400px) and (max-width: 1080px) {
+
+            .table{
+                width: 90%;
+            }
+        }
     </style>
 </head>
 
 <body>
     <section>
         <form method="POST" action="" enctype="multipart/form-data">
-            <div class="card bg-info-subtle" style="height:800px; width:100%;">
+            <div class="card bg-info-subtle card1" style="height:800px; width:100%;">
                 <div class="mt-2">
 
                     <?php

@@ -48,8 +48,8 @@ include("navbar.php");
             } else {
                 ?>
 
-                <div class="row mt-2">
-                    <div class="col">
+                <div class="row m-2">
+                    <div class="col m-2">
                         <table class="table table-bordered border-primary">
                             <thead>
                                 <tr class="table-warning">

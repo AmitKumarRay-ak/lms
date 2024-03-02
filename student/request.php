@@ -90,6 +90,12 @@ include("navbar.php");
             justify-content: center;
             align-items: center;
         }
+
+        @media (min-width: 350px) and (max-width: 800px) {
+            .row1 {
+                overflow-x: scroll;
+            }
+        }
     </style>
 </head>
 
@@ -101,7 +107,7 @@ include("navbar.php");
             <?php
             if (isset($_SESSION['login_user'])) {
                 // echo "Welcome : " . $_SESSION['login_user'];
-                echo "<img class='img-circle profile_img m-4' style='height:120px; width:120px;' src='images/" . $_SESSION['pic'] . " '>";
+                echo "<img class='rounded-circle m-4' style='height:120px; width:120px;' src='images/" . $_SESSION['pic'] . " '>";
                 echo "</br>";
                 ?>
             <div class="ms-4">
@@ -139,18 +145,19 @@ include("navbar.php");
     $q = mysqli_query($db, "SELECT * FROM `issue_book` WHERE username='$_SESSION[login_user]' and approv='' ;");
 
     if (mysqli_num_rows($q) == 0) {
-            ?>
-            <div class="responsive-div">
-                <h2>There is no any request</h2>
-            </div>
-            <?php
+        ?>
+    <div class="responsive-div">
+        <h2>There is no any request</h2>
+    </div>
+    <?php
     } else {
         ?>
 
-    <div class="row m-3">
-        <div class="col">
+    <form method="POST" action="">
+        <div class="row row1 m-3">
+            <div class="col col1">
 
-            <form method="POST" action="">
+
 
                 <table class="table table-bordered border-primary">
                     <thead>
@@ -193,12 +200,14 @@ include("navbar.php");
                         } ?>
                     </tbody>
                 </table>
-                <p align="center"><button class="btn btn-warning" type="submit" name="delete"
-                        onclick="location.reload()">Delete</button></p>
 
-            </form>
+
+
+            </div>
         </div>
-    </div>
+        <p align="center"><button class="btn btn-warning" type="submit" name="delete"
+                onclick="location.reload()">Delete</button></p>
+    </form>
 
     <?php
     }

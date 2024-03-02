@@ -101,7 +101,7 @@ include("navbar.php");
             <?php
             if (isset($_SESSION['login_user'])) {
                 // echo "Welcome : " . $_SESSION['login_user'];
-                echo "<img class='img-circle profile_img m-4' style='height:120px; width:120px;' src='images/" . $_SESSION['pic'] . " '>";
+                echo "<img class='rounded-circle m-4' style='height:120px; width:120px;' src='images/" . $_SESSION['pic'] . " '>";
                 echo "</br>";
                 ?>
             <div class="ms-4">
