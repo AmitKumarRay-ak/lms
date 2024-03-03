@@ -313,7 +313,7 @@ include("navbar.php");
 
                     if (isset($_POST['submit1'])) {
 
-                        mysqli_query($db, "INSERT INTO `library`.`message` (`username`, `message`, `status`, `sender`) VALUES ('$_SESSION[username]','$_POST[message]','no','admin')");
+                        mysqli_query($db, "INSERT INTO `message` (`username`, `message`, `status`, `sender`) VALUES ('$_SESSION[username]','$_POST[message]','no','admin')");
                         $res = mysqli_query($db, "SELECT * FROM message WHERE username='$_SESSION[username]' ");
 
                     } else {

@@ -59,7 +59,7 @@ include("navbar.php");
 
     <?php
     if (isset($_POST['submit'])) {
-        mysqli_query($db, "INSERT INTO `library`.`message` (`username`, `message`, `status`, `sender`) VALUES ('$_SESSION[login_user]','$_POST[message]','no','student')");
+        mysqli_query($db, "INSERT INTO `message` (`username`, `message`, `status`, `sender`) VALUES ('$_SESSION[login_user]','$_POST[message]','no','student')");
 
         $res = mysqli_query($db, "SELECT * FROM `message` WHERE `username`='$_SESSION[login_user]' ");
     } else {
