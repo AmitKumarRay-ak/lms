@@ -39,7 +39,7 @@ include("navbar.php");
                     <hr>
                     <h1 class="display-6 text-warning">All Comments</h1>
 
-                    <div id="" style="overflow:scroll; height:300px;">
+                    <div id="getdata" style="overflow:scroll; height:300px;">
                         <?php
                         if (isset($_POST['submit'])) {
                             $sql = "INSERT INTO `comments`(`username`,`comment`) VALUES ('$_SESSION[login_user]','$_POST[comment]')";
@@ -51,7 +51,7 @@ include("navbar.php");
                                 while ($row = mysqli_fetch_assoc($res)) {
                                     echo "<tr>";
 
-                                    echo "<td style='width:30%;'>";
+                                    echo "<td style='width:40%;'>";
                                     echo $row['username'];
                                     echo "</td>";
 
@@ -71,7 +71,7 @@ include("navbar.php");
                             while ($row = mysqli_fetch_assoc($res)) {
                                 echo "<tr>";
 
-                                echo "<td style='width:30%;'>";
+                                echo "<td style='width:40%;'>";
                                 echo $row['username'];
                                 echo "</td>";
 
@@ -98,6 +98,22 @@ include("navbar.php");
 
 
 
+
+
+    <script>
+        function dis() {
+            xmlhttp = new XMLHttpRequest();
+            xmlhttp.open("GET", "FetchFeedbackMessage.php", false);
+            xmlhttp.send(null);
+            document.getElementById("getdata").innerHTML = xmlhttp.responseText;
+        }
+
+        dis();
+
+        setInterval(function () {
+            dis();
+        }, 2000)
+    </script>
 
 
 

@@ -109,6 +109,7 @@ include("navbar.php");
             ?>
         </a>
         <hr style="color:white">
+        <div class="side_nav_button"><a href="add.php">Add Books</a></div>
         <div class="side_nav_button"><a href="books.php">Books</a></div>
         <div class="side_nav_button"><a href="request.php">Book Request</a></div>
         <div class="side_nav_button"><a href="issue_info.php">Issue Information</a></div>
