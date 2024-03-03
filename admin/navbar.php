@@ -20,8 +20,8 @@ session_start();
 <body>
 
     <?php
-    $r = mysqli_query($db, "SELECT COUNT(status) as total FROM message WHERE status='no' and sender='student' ");
-    $c = mysqli_fetch_assoc($r);
+    // $r = mysqli_query($db, "SELECT COUNT(status) as total FROM message WHERE status='no' and sender='student' ");
+    // $c = mysqli_fetch_assoc($r);
 
     $sql_app = mysqli_query($db,"SELECT COUNT(status) as total FROM admin WHERE status='' ");
     $a=mysqli_fetch_assoc($sql_app);
@@ -70,17 +70,6 @@ session_start();
                             </a>
                         </li>
 
-
-                        <!------------------------ messaage icon ---------------------->
-                        <li class="btn nav-item"><a class="text-decoration-none" href="message.php">
-                                <i class="fa-solid fa-message"></i>
-                                <span class="badge rounded-pill text-bg-info">
-                                    <?php
-                                    echo $c['total'];
-                                    ?>
-                                </span>
-                            </a>
-                        </li>
                         <li class="btn nav-item">
                             <a class="text-decoration-none text-success" href="profile.php">
                                 <?php

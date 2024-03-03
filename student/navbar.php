@@ -22,8 +22,8 @@ session_start();
 <body>
 
     <?php
-    $r = mysqli_query($db, "SELECT COUNT(status) as total FROM message WHERE status='no' and username='$_SESSION[login_user]' and sender='admin' ;");
-    $c = mysqli_fetch_assoc($r);
+    // $r = mysqli_query($db, "SELECT COUNT(status) as total FROM message WHERE status='no' and username='$_SESSION[login_user]' and sender='admin' ;");
+    // $c = mysqli_fetch_assoc($r);
 
     ?>
 
@@ -53,20 +53,7 @@ session_start();
                 if (isset($_SESSION['login_user'])) {
                     ?>
                     <ul class="navbar-nav ms-auto mb-2 mb-lg-0 mt-2" style="align-items: right;">
-                        <!-- timer area -->
-                        <!-- <li class="btn nav-item"><a class="text-decoration-none text-danger">
-                                <p style="padding-top:2px;" id="demo"></p>
-                            </a></li> -->
-                        <!-- timer area end -->
-                        <li class="btn nav-item"><a class="text-decoration-none" href="message.php">
-                                <i class="fa-solid fa-message"></i>
-                                <span class="badge rounded-pill text-bg-info">
-                                    <?php
-                                    echo $c['total'];
-                                    ?>
-                                </span>
-                            </a>
-                        </li>
+                       
                         <li class="btn nav-item">
                             <a class="text-decoration-none" href="profile.php">
                                 <?php
