@@ -22,9 +22,9 @@ session_start();
     <?php
     // $r = mysqli_query($db, "SELECT COUNT(status) as total FROM message WHERE status='no' and sender='student' ");
     // $c = mysqli_fetch_assoc($r);
-
-    $sql_app = mysqli_query($db,"SELECT COUNT(status) as total FROM admin WHERE status='' ");
-    $a=mysqli_fetch_assoc($sql_app);
+    
+    $sql_app = mysqli_query($db, "SELECT COUNT(status) as total FROM admin WHERE status='' ");
+    $a = mysqli_fetch_assoc($sql_app);
     ?>
 
 
@@ -61,7 +61,7 @@ session_start();
 
                         <!------------------------ new admin icon ---------------------->
                         <li class="btn nav-item"><a class="text-decoration-none" href="admin_status.php">
-                        <i class="fa-solid fa-user-clock"></i>
+                                <i class="fa-solid fa-user-clock"></i>
                                 <span class="badge rounded-pill text-bg-info">
                                     <?php
                                     echo $a['total'];
