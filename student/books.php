@@ -71,13 +71,15 @@ include("navbar.php");
                 font-size: 18px;
             }
         }
+
         @media (min-width: 350px) and (max-width: 640px) {
-            .row{
+            .row {
                 width: 90%;
                 overflow-x: scroll;
                 padding: 0;
                 margin: 0;
             }
+
             .table {
                 width: 90%;
             }
@@ -180,6 +182,7 @@ include("navbar.php");
                         <th scope="col">Status</th>
                         <th scope="col">Quantity</th>
                         <th scope="col">Department</th>
+                        <th scope="col">Price</th>
                     </tr>
                     <?php
                     // $sql = "SELECT * FROM `books`";
@@ -210,6 +213,9 @@ include("navbar.php");
                         </td>
                         <td>
                             <?php echo $data['department']; ?>
+                        </td>
+                        <td>
+                            <?php echo $data['price']; ?>
                         </td>
                     </tr>
 
@@ -245,6 +251,8 @@ include("navbar.php");
                             <th scope="col">Status</th>
                             <th scope="col">Quantity</th>
                             <th scope="col">Department</th>
+                            <th scope="col">Price</th>
+                            <th scope="col">Action</th>
                         </tr>
                         <?php
                         $sql = "SELECT * FROM `books` ORDER BY `name`";
@@ -275,6 +283,13 @@ include("navbar.php");
                                 </td>
                                 <td>
                                     <?php echo $data['department']; ?>
+                                </td>
+                                <td>
+                                    <?php echo $data['price']; ?>
+                                </td>
+                                <td>
+                                    <button class="btn btn-warning"><a class="text-decoration-none text-black" href="#">Buy
+                                            Now</a></button>
                                 </td>
                             </tr>
 

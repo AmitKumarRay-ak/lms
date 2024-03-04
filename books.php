@@ -147,17 +147,7 @@ include("navbar.php");
         </form>
     </div>
 
-    <!------------------ request book searchbar ----------------->
-    <div class="d-flex justify-content-end mt-3">
-        <form action="" method="POST" class="navbar-form" name="form1">
-            <div class="form-outline" data-mdb-input-init>
-                <input class="rounded-pill border-bottom border-danger p-2" type="text" name="bid"
-                    placeholder="Enter Book ID ...">
-                <button type="submit" name="submit1" class="btn btn-default border border-success me-4">Request Book
-                </button>
-            </div>
-        </form>
-    </div>
+    
 
     <?php
     if (isset($_POST['submit'])) {
@@ -292,42 +282,6 @@ include("navbar.php");
     ?>
 
 
-
-
-    <!------------------------------- php code for book request -------------------------->
-
-    <?php
-    if (isset($_POST['submit1'])) {
-
-        if (isset($_SESSION['login_user'])) {
-
-            $sql1 = mysqli_query($db, "SELECT * FROM `books` WHERE bid='$_POST[bid]' ");
-            $row1 = mysqli_fetch_assoc($sql1);
-            $count1 = mysqli_num_rows($sql1);
-
-            if ($count1 != 0) {
-                mysqli_query($db, "INSERT INTO `issue_book`(`username`, `bid`, `approv`, `issue`, `return`) VALUES ('$_SESSION[login_user]','$_POST[bid]','','','')");
-                ?>
-                <script>
-                    window.location = "request.php";
-                </script>
-                <?php
-            } else {
-                ?>
-                <script>
-                    alert("Book is Not Exist in Liblary.");
-                </script>
-                <?php
-            }
-        } else {
-            ?>
-            <script>
-                alert("You Need To Login First For Request A Book");
-            </script>
-            <?php
-        }
-    }
-    ?>
 
 </body>
 

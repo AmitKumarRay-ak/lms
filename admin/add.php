@@ -173,7 +173,7 @@ include("navbar.php");
     </script>
     <!----------------------------------------------- sidenav end ----------------------------------------->
 
-
+<!-- <h4 class="text"></h4> -->
 
     <form class="" action="" method="POST">
         <h2>Add New Books</h2>
@@ -181,12 +181,14 @@ include("navbar.php");
             <div class="card bg-warning-subtle">
 
                 <input class="rounded-pill ps-3" type="text" id="" name="bid" placeholder="SL No." required><br>
+                <input class="rounded-pill bg-light custom-file-input ps-3" type="file" id="customFile" name="bimage" placeholder="Book image" required><br>
                 <input class="rounded-pill ps-3" type="text" id="" name="name" placeholder="Book Name" required><br>
                 <input class="rounded-pill ps-3" type="text" id="" name="authors" placeholder="Book Author" required><br>
                 <input class="rounded-pill ps-3" type="text" id="" name="edition" placeholder="Edition" required><br>
                 <input class="rounded-pill ps-3" type="text" id="" name="status" placeholder="Status" required><br>
                 <input class="rounded-pill ps-3" type="text" id="" name="quantity" placeholder="Book Quantity" required><br>
                 <input class="rounded-pill ps-3" type="text" id="" name="department" placeholder="Book Department" required><br>
+                <input class="rounded-pill ps-3" type="text" id="" name="price" placeholder="Price" required><br>
                 <button class="rounded-pill" name="submit" type="submit">ADD</button>
             </div>
         </div>
@@ -197,7 +199,7 @@ include("navbar.php");
     {
         if(isset($_SESSION['login_user']))
         {
-            mysqli_query($db,"INSERT INTO `books` (`bid`, `name`, `authors`, `edition`, `status`, `quantity`, `department`) VALUES ('$_POST[bid]','$_POST[name]','$_POST[authors]','$_POST[edition]','$_POST[status]','$_POST[quantity]','$_POST[department]')");
+            mysqli_query($db,"INSERT INTO `books` (`bid`, `bimage`, `name`, `authors`, `edition`, `status`, `quantity`, `department`,`price`) VALUES ('$_POST[bid]','$_POST[bimage]','$_POST[name]','$_POST[authors]','$_POST[edition]','$_POST[status]','$_POST[quantity]','$_POST[department]','$_POST[price]')");
             ?>
             <script>
                 alert ("Book Added Successfuly");

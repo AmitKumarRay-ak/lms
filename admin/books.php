@@ -71,13 +71,15 @@ include("navbar.php");
                 font-size: 18px;
             }
         }
+
         @media (min-width: 350px) and (max-width: 640px) {
-            .row{
+            .row {
                 width: 90%;
                 overflow-x: scroll;
                 padding: 0;
                 margin: 0;
             }
+
             .table {
                 width: 90%;
             }
@@ -148,17 +150,6 @@ include("navbar.php");
         </form>
     </div>
 
-    <!------------------ request book searchbar ----------------->
-    <div class="d-flex justify-content-end mt-3">
-        <form action="" method="POST" class="navbar-form" name="form1">
-            <div class="form-outline" data-mdb-input-init>
-                <input class="rounded-pill border-bottom border-danger p-2" type="text" name="bid"
-                    placeholder="Enter Book ID ...">
-                <button type="submit" name="submit1" class="btn btn-default border border-success me-4">Request Book
-                </button>
-            </div>
-        </form>
-    </div>
 
     <?php
     if (isset($_POST['submit'])) {
@@ -169,60 +160,68 @@ include("navbar.php");
         } else {
             ?>
 
-    <div class="row m-3">
-        <div class="col">
-            <table class="table table-bordered border-primary">
-                <thead>
-                    <tr class="table-warning">
-                        <th scope="col">ID</th>
-                        <th scope="col">Book Name</th>
-                        <th scope="col">Author Name</th>
-                        <th scope="col">Edition</th>
-                        <th scope="col">Status</th>
-                        <th scope="col">Quantity</th>
-                        <th scope="col">Department</th>
-                    </tr>
-                    <?php
-                    // $sql = "SELECT * FROM `books`";
-                    // $result = mysqli_query($con, $sql);
-            
-                    while ($data = mysqli_fetch_array($q)) { ?>
+            <div class="row m-3">
+                <div class="col">
+                    <table class="table table-bordered border-primary">
+                        <thead>
+                            <tr class="table-warning">
+                                <th scope="col">ID</th>
+                                <th scope="col">Book Image</th>
+                                <th scope="col">Book Name</th>
+                                <th scope="col">Author Name</th>
+                                <th scope="col">Edition</th>
+                                <th scope="col">Status</th>
+                                <th scope="col">Quantity</th>
+                                <th scope="col">Department</th>
+                                <th scope="col">Price</th>
+                            </tr>
+                            <?php
+                            // $sql = "SELECT * FROM `books`";
+                            // $result = mysqli_query($con, $sql);
+                    
+                            while ($data = mysqli_fetch_array($q)) { ?>
 
-                </thead>
-                <tbody>
-                    <tr class="table-primary">
-                        <th scope="row">
-                            <?php echo $data['bid']; ?>
-                        </th>
-                        <td>
-                            <?php echo $data['name']; ?>
-                        </td>
-                        <td>
-                            <?php echo $data['authors']; ?>
-                        </td>
-                        <td>
-                            <?php echo $data['edition']; ?>
-                        </td>
-                        <td>
-                            <?php echo $data['status']; ?>
-                        </td>
-                        <td>
-                            <?php echo $data['quantity']; ?>
-                        </td>
-                        <td>
-                            <?php echo $data['department']; ?>
-                        </td>
-                    </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="table-primary">
+                                    <th scope="row">
+                                        <?php echo $data['bid']; ?>
+                                    </th>
+                                    <td>
+                                        <?php echo $data['bimage']; ?>
+                                    </td>
+                                    <td>
+                                        <?php echo $data['name']; ?>
+                                    </td>
+                                    <td>
+                                        <?php echo $data['authors']; ?>
+                                    </td>
+                                    <td>
+                                        <?php echo $data['edition']; ?>
+                                    </td>
+                                    <td>
+                                        <?php echo $data['status']; ?>
+                                    </td>
+                                    <td>
+                                        <?php echo $data['quantity']; ?>
+                                    </td>
+                                    <td>
+                                        <?php echo $data['department']; ?>
+                                    </td>
+                                    <td>
+                                        <?php echo $data['price']; ?>
+                                    </td>
+                                </tr>
 
-                    <?php
+                                <?php
 
-                    } ?>
-                </tbody>
-            </table>
-        </div>
-    </div>
+                            } ?>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
 
-    <?php
+            <?php
         }
     }
     //--------------------- if button is not pressed------------------------
@@ -230,7 +229,7 @@ include("navbar.php");
         ?>
 
 
-    <!-- <center>
+        <!-- <center>
         <h2>List of Books</h2>
     </center> -->
 
@@ -240,12 +239,14 @@ include("navbar.php");
                     <thead>
                         <tr class="table-warning">
                             <th scope="col">ID</th>
+                            <th scope="col">Book Image</th>
                             <th scope="col">Book Name</th>
                             <th scope="col">Author Name</th>
                             <th scope="col">Edition</th>
                             <th scope="col">Status</th>
                             <th scope="col">Quantity</th>
                             <th scope="col">Department</th>
+                            <th scope="col">Price</th>
                         </tr>
                         <?php
                         $sql = "SELECT * FROM `books` ORDER BY `name`";
@@ -259,6 +260,9 @@ include("navbar.php");
                                 <th scope="row">
                                     <?php echo $data['bid']; ?>
                                 </th>
+                                <td>
+                                    <?php echo $data['bimage']; ?>
+                                </td>
                                 <td>
                                     <?php echo $data['name']; ?>
                                 </td>
@@ -276,6 +280,9 @@ include("navbar.php");
                                 </td>
                                 <td>
                                     <?php echo $data['department']; ?>
+                                </td>
+                                <td>
+                                    <?php echo $data['price']; ?>
                                 </td>
                             </tr>
 
@@ -295,40 +302,7 @@ include("navbar.php");
 
 
 
-    <!------------------------------- php code for book request -------------------------->
 
-    <?php
-    if (isset($_POST['submit1'])) {
-
-        if (isset($_SESSION['login_user'])) {
-
-            $sql1 = mysqli_query($db, "SELECT * FROM `books` WHERE bid='$_POST[bid]' ");
-            $row1 = mysqli_fetch_assoc($sql1);
-            $count1 = mysqli_num_rows($sql1);
-
-            if ($count1 != 0) {
-                mysqli_query($db, "INSERT INTO `issue_book`(`username`, `bid`, `approv`, `issue`, `return`) VALUES ('$_SESSION[login_user]','$_POST[bid]','','','')");
-                ?>
-                <script>
-                    window.location = "request.php";
-                </script>
-                <?php
-            } else {
-                ?>
-                <script>
-                    alert("Book is Not Exist in Liblary.");
-                </script>
-                <?php
-            }
-        } else {
-            ?>
-            <script>
-                alert("You Need To Login First For Request A Book");
-            </script>
-            <?php
-        }
-    }
-    ?>
 
 </body>
 
