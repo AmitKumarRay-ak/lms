@@ -87,7 +87,7 @@ include("navbar.php");
                             } else {
                                 ?>
                     <script>
-                        alert("Approved Cancelled");
+                        alert("Cancelled");
                         window.location = "admin_status.php";
                     </script>
                     <?php
