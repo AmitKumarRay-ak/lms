@@ -2,6 +2,11 @@
 include("connection.php");
 include("navbar.php");
 
+
+
+
+
+
 if (isset($_GET['bid'])) {
     $id = $_GET['bid'];
     $sql = "SELECT * FROM `books` WHERE `bid`='$id'";
@@ -44,8 +49,6 @@ if (isset($_GET['bid'])) {
                         <td>
                             <?php echo $bname; ?>
                         </td>
-                        <!-- <td rowspan="4" class="text-center"><img src="<?php echo $bimage ?>" height="200px"
-                                width="200px"></td> -->
                     </tr>
                     <tr>
                         <th>Product Price :</th>
@@ -100,6 +103,7 @@ if (isset($_GET['bid'])) {
 
 
 
+    
 
 </body>
 
