@@ -46,7 +46,13 @@ if (isset($_POST['update'])) {
     $update_result = mysqli_query($db, $update_query);
 
     if ($update_result) {
-        echo "Book details updated successfully.";
+        // echo "Book details updated successfully.";
+        ?>
+        <script>
+            // alert("Details Updated");
+            window.location = "books.php";
+        </script>
+        <?php
     } else {
         echo "Error updating book details.";
     }
