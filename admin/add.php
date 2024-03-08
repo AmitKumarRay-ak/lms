@@ -5,40 +5,40 @@ include("navbar.php");
 
 
 
-
 <?php
 if (isset($_POST['submit'])) {
+    // Check if the user is logged in
     if (isset($_SESSION['login_user'])) {
+        // Sanitize user input
+        $bid = mysqli_real_escape_string($db, $_POST['bid']);
+        $name = mysqli_real_escape_string($db, $_POST['name']);
+        $authors = mysqli_real_escape_string($db, $_POST['authors']);
+        $edition = mysqli_real_escape_string($db, $_POST['edition']);
+        $status = mysqli_real_escape_string($db, $_POST['status']);
+        $quantity = mysqli_real_escape_string($db, $_POST['quantity']);
+        $department = mysqli_real_escape_string($db, $_POST['department']);
+        $price = mysqli_real_escape_string($db, $_POST['price']);
 
-        $query = mysqli_query($db, "SELECT * FROM `books` WHERE `bid` = '$_POST[bid]'");
+        // Check if the book already exists
+        $query = mysqli_query($db, "SELECT * FROM `books` WHERE `bid` = '$bid'");
         if (mysqli_num_rows($query) > 0) {
             // Book already exists
-            ?>
-            <script>
-                alert("Book with the same ID already exists.");
-            </script>
-            <?php
+            echo "<script>alert('Book with the same ID already exists.');</script>";
         } else {
-            // Insert the book details into the database
-            mysqli_query($db, "INSERT INTO `books` (`bid`, `name`, `authors`, `edition`, `status`, `quantity`, `department`,`price`) VALUES ('$_POST[bid]','$_POST[name]','$_POST[authors]','$_POST[edition]','$_POST[status]','$_POST[quantity]','$_POST[department]','$_POST[price]')");
-            ?>
-            <script>
-                alert("Book Added Successfully");
-            </script>
-            <?php
+            // Insert the book details into the database using prepared statement
+            $insert_query = mysqli_prepare($db, "INSERT INTO `books` (`bid`, `name`, `authors`, `edition`, `status`, `quantity`, `department`, `price`) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
+            mysqli_stmt_bind_param($insert_query, 'ssssssss', $bid, $name, $authors, $edition, $status, $quantity, $department, $price);
+            if (mysqli_stmt_execute($insert_query)) {
+                echo "<script>alert('Book Added Successfully');</script>";
+            } else {
+                echo "<script>alert('Failed to add book.');</script>";
+            }
         }
-
     } else {
-        ?>
-        <script>
-            alert("You Need To Login First");
-        </script>
-        <?php
+        // User not logged in
+        echo "<script>alert('You Need To Login First');</script>";
     }
 }
-
-
-
 ?>
 
 
