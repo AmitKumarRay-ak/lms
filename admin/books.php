@@ -166,7 +166,6 @@ include("navbar.php");
                         <thead>
                             <tr class="table-warning">
                                 <th scope="col">ID</th>
-                                <th scope="col">Book Image</th>
                                 <th scope="col">Book Name</th>
                                 <th scope="col">Author Name</th>
                                 <th scope="col">Edition</th>
@@ -187,9 +186,6 @@ include("navbar.php");
                                     <th scope="row">
                                         <?php echo $data['bid']; ?>
                                     </th>
-                                    <td>
-                                        <?php echo $data['bimage']; ?>
-                                    </td>
                                     <td>
                                         <?php echo $data['name']; ?>
                                     </td>
@@ -239,7 +235,6 @@ include("navbar.php");
                     <thead>
                         <tr class="table-warning">
                             <th scope="col">ID</th>
-                            <th scope="col">Book Image</th>
                             <th scope="col">Book Name</th>
                             <th scope="col">Author Name</th>
                             <th scope="col">Edition</th>
@@ -260,9 +255,6 @@ include("navbar.php");
                                 <th scope="row">
                                     <?php echo $data['bid']; ?>
                                 </th>
-                                <td>
-                                    <?php echo $data['bimage']; ?>
-                                </td>
                                 <td>
                                     <?php echo $data['name']; ?>
                                 </td>

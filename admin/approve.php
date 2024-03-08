@@ -136,7 +136,7 @@ include("navbar.php");
                 <br>
                 <form action="" method="POST">
                     <div class="form-group">
-                        <input type="text" class="form-control" name="approve" placeholder="Approve Status             Approve or NotApprove"
+                        <input type="text" class="form-control" name="approve" placeholder="Approve Status             yes / no"
                             required>
                         <br>
 
@@ -148,10 +148,6 @@ include("navbar.php");
                             placeholder="Return Date                  yyyy-mm-dd" required>
                         <br>
 
-                        <input type="text" class="form-control" name="tm"
-                            placeholder="Return Date                  Feb 18, 2020   15:00:00" required>
-                        <br>
-
                         <button class="btn btn-warning btn-block btn-lg" style="width:200px;" type="submit"
                             name="submit">Approve</button>
                     </div>
@@ -159,8 +155,6 @@ include("navbar.php");
 
                 <?php
                 if (isset($_POST['submit'])) {
-
-                    mysqli_query($db,"INSERT INTO `timer`(`name`, `bid`, `tm`) VALUES ('$_SESSION[name]','$_SESSION[bid]','$_POST[tm]') ");
 
                     mysqli_query($db, "UPDATE `issue_book` SET `approv`='$_POST[approve]',`issue`='$_POST[issue]',`return`='$_POST[return]' WHERE username='$_SESSION[name]' AND bid='$_SESSION[bid]' ");
 

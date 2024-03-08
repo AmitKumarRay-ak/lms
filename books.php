@@ -110,9 +110,6 @@ include("navbar.php");
         </a>
         <hr style="color:white">
         <div class="side_nav_button"><a href="books.php">Books</a></div>
-        <div class="side_nav_button"><a href="request.php">Book Request</a></div>
-        <div class="side_nav_button"><a href="issue_info.php">Issue Information</a></div>
-        <div class="side_nav_button"><a href="expired.php">Expired Book</a></div>
     </div>
 
     <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776; open</span>

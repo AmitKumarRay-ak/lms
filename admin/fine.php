@@ -46,7 +46,9 @@ include("navbar.php");
             $q = mysqli_query($db, "SELECT * FROM `fine` WHERE username like '%$_POST[search]%' ");
 
             if (mysqli_num_rows($q) == 0) {
+                echo "<h3 class='text-primary' style='margin:10px; padding:200px;'>";
                 echo "Sorry!  student not found with this username ";
+                echo "<h3>";
             } else {
                 ?>
 

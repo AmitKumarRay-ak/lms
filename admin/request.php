@@ -93,19 +93,19 @@ include("navbar.php");
             .table {
                 width: 90%;
             }
-            
-            .form-outline{
+
+            .form-outline {
                 display: block;
                 justify-content: center;
                 align-items: center;
                 padding: 10px;
             }
 
-            .row .col h3{
+            .row .col h3 {
                 margin-top: 20px;
             }
 
-            .res{
+            .res {
                 margin: 10px;
             }
         }
@@ -168,7 +168,8 @@ include("navbar.php");
                                     placeholder="username" required>
                                 <input class="res rounded-pill border border-danger p-2" type="text" name="bid"
                                     placeholder="book id" required>
-                                <button type="submit" name="submit" class="res btn btn-default border border-warning me-4">
+                                <button type="submit" name="submit"
+                                    class="res btn btn-default border border-warning me-4">
                                     <i class="fa-solid fa-magnifying-glass fa-beat" style="color: #c99e26;"></i>
                                 </button>
                             </div>
@@ -195,8 +196,15 @@ include("navbar.php");
                     <?php
 
                     if (isset($_SESSION['login_user'])) {
-                        $sql = "SELECT student.username,roll,books.bid,name,authors,edition,status FROM student INNER JOIN issue_book ON student.username=issue_book.username INNER JOIN books ON issue_book.bid=books.bid WHERE issue_book.approv=''";
+                        $sql = "SELECT student.username, roll, books.bid, name, authors, edition, status 
+                                FROM student 
+                                INNER JOIN issue_book ON student.username = issue_book.username 
+                                INNER JOIN books ON issue_book.bid = books.bid 
+                                WHERE issue_book.approv = ''
+                                GROUP BY books.bid";
+                        // Grouping by book ID
                         $res = mysqli_query($db, $sql);
+
 
                         if (mysqli_num_rows($res) == 0) {
                             echo "<h2>";

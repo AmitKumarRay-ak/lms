@@ -9,38 +9,25 @@ include("navbar.php");
 <?php
 if (isset($_POST['submit'])) {
     if (isset($_SESSION['login_user'])) {
-        // Check if file was uploaded without errors
-        if (isset($_FILES['bookimage']) && $_FILES['bookimage']['error'] === UPLOAD_ERR_OK) {
-            // Check enctype attribute
-            $target_dir = "book_image/";
-            $target_file = $target_dir . basename($_FILES['bookimage']['name']);
 
-            // Move the uploaded file to the desired location
-            if (move_uploaded_file($_FILES['bookimage']['tmp_name'], $target_file)) {
-                // Check if the book already exists
-                $query = mysqli_query($db, "SELECT * FROM `books` WHERE `bid` = '$_POST[bid]'");
-                if (mysqli_num_rows($query) > 0) {
-                    // Book already exists
-                    ?>
-                    <script>
-                        alert("Book with the same ID already exists.");
-                    </script>
-                    <?php
-                } else {
-                    // Insert the book details into the database
-                    mysqli_query($db, "INSERT INTO `books` (`bid`, `bimage`, `name`, `authors`, `edition`, `status`, `quantity`, `department`,`price`) VALUES ('$_POST[bid]','$target_file','$_POST[name]','$_POST[authors]','$_POST[edition]','$_POST[status]','$_POST[quantity]','$_POST[department]','$_POST[price]')");
-                    ?>
-                    <script>
-                        alert("Book Added Successfully");
-                    </script>
-                    <?php
-                }
-            } else {
-                echo "Failed to move uploaded file.";
-            }
+        $query = mysqli_query($db, "SELECT * FROM `books` WHERE `bid` = '$_POST[bid]'");
+        if (mysqli_num_rows($query) > 0) {
+            // Book already exists
+            ?>
+            <script>
+                alert("Book with the same ID already exists.");
+            </script>
+            <?php
         } else {
-            echo "No file uploaded or an error occurred during upload.";
+            // Insert the book details into the database
+            mysqli_query($db, "INSERT INTO `books` (`bid`, `name`, `authors`, `edition`, `status`, `quantity`, `department`,`price`) VALUES ('$_POST[bid]','$_POST[name]','$_POST[authors]','$_POST[edition]','$_POST[status]','$_POST[quantity]','$_POST[department]','$_POST[price]')");
+            ?>
+            <script>
+                alert("Book Added Successfully");
+            </script>
+            <?php
         }
+
     } else {
         ?>
         <script>
@@ -232,8 +219,6 @@ if (isset($_POST['submit'])) {
             <div class="card bg-warning-subtle">
 
                 <input class="rounded-pill ps-3" type="text" id="" name="bid" placeholder="SL No." required><br>
-                <input class="rounded-pill bg-light custom-file-input ps-3" type="file" id="customFile" name="bookimage"
-                    placeholder="Book image" required><br>
                 <input class="rounded-pill ps-3" type="text" id="" name="name" placeholder="Book Name" required><br>
                 <input class="rounded-pill ps-3" type="text" id="" name="authors" placeholder="Book Author"
                     required><br>

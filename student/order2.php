@@ -2,22 +2,20 @@
 include("connection.php");
 include("navbar.php");
 
-
-
-
-
+// Initialize variables
+$bname = $bprice = $bimage = "";
 
 if (isset($_GET['bid'])) {
     $id = $_GET['bid'];
     $sql = "SELECT * FROM `books` WHERE `bid`='$id'";
     $result = mysqli_query($db, $sql);
-    $row = mysqli_fetch_assoc($result);
-
-    $bname = $row['name'];
-    $bprice = $row['price'];
-    // $del_charge = 50;
-    // $total_price = $bprice + $del_charge;
-    $bimage = $row['bimage'];
+    if ($row = mysqli_fetch_assoc($result)) {
+        $bname = $row['name'];
+        $bprice = $row['price'];
+        $bimage = $row['bimage'];
+    } else {
+        echo "No product found";
+    }
 } else {
     echo "No product found";
 }
@@ -30,7 +28,9 @@ if (isset($_GET['bid'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-
+    <!-- Include Razorpay checkout script -->
+    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
 </head>
 
 <body>
@@ -41,39 +41,30 @@ if (isset($_GET['bid'])) {
                 <hr>
                 <br>
 
-
                 <h3>Product Details : </h3>
                 <table class="table table-bordered" width="400px">
                     <tr>
                         <th>Product Name :</th>
-                        <td>
-                            <?php echo $bname; ?>
-                        </td>
+                        <td><?php echo $bname; ?></td>
                     </tr>
                     <tr>
                         <th>Product Price :</th>
-                        <td>Rs.
-                            <?php echo number_format($bprice); ?>/-
-                        </td>
+                        <td>Rs. <?php echo number_format($bprice); ?>/-</td>
                     </tr>
-                    <tr>
+                    <!-- <tr>
                         <th>Delivery Charge :</th>
-                        <td>Rs.
-                            <?php echo number_format($del_charge); ?>/-
-                        </td>
+                        <td>Rs. <?php //echo number_format($del_charge); ?>/-</td>
                     </tr>
                     <tr>
                         <th>Total Price :</th>
-                        <td>Rs.
-                            <?php echo number_format($bprice); ?>/-
-                        </td>
-                    </tr>
+                        <td>Rs. <?php //echo number_format($bprice); ?>/-</td>
+                    </tr> -->
                 </table>
                 <br><br>
                 <h4>Enter Your Details :</h4>
 
-
-                <form action="pay2.php" method="POST" accept-charset="utf-8">
+                <!-- Payment Form -->
+                <form id="paymentForm" action="" method="POST" accept-charset="utf-8">
                     <input type="hidden" name="bname" value="<?php echo $bname; ?>">
                     <input type="hidden" name="bprice" value="<?php echo $bprice; ?>">
                     <div class="form-group">
@@ -85,26 +76,54 @@ if (isset($_GET['bid'])) {
                     </div>
                     <br>
                     <div class="form-group">
-                        <input type="tel" name="phone" class="form-control" placeholder="Enter Your Mobile No."
-                            required>
+                        <input type="tel" name="phone" class="form-control" placeholder="Enter Your Mobile No." required>
                     </div>
                     <br>
                     <div class="form-group">
-                        <input type="submit" name="submit" class="btn btn-danger"
-                            value="Click To Pay : Rs. <?php echo number_format($bprice); ?>/-">
+                        <button type="submit" class="btn btn-danger" id="rzp-button1">Click To Pay : Rs. <?php echo number_format($bprice); ?>/-</button>
                     </div>
                 </form>
-
-
             </div>
         </div>
     </div>
 
+    <script>
+        // Razorpay configuration
+        var options = {
+            "key": "rzp_test_LC2zYOHIXfEq1t", // Replace with your actual Razorpay API key
+            "amount": "<?php echo $bprice * 100; ?>", // Amount is in currency subunits. Convert rupees to paise.
+            "currency": "INR",
+            "name": "Library Management System",
+            "description": "Book Shop",
+            "image": "https://example.com/your_logo",
+            "handler": function(response) {
+                alert(response.razorpay_payment_id);
+                alert(response.razorpay_order_id);
+                alert(response.razorpay_signature)
+            },
+            "prefill": {
+                // Prefill customer details based on form input
+                "name": "<?php echo isset($_POST['name']) ? $_POST['name'] : ''; ?>",
+                "email": "<?php echo isset($_POST['email']) ? $_POST['email'] : ''; ?>",
+                "contact": "<?php echo isset($_POST['phone']) ? $_POST['phone'] : ''; ?>"
+            },
+            "notes": {
+                "address": "Razorpay Corporate Office"
+            },
+            "theme": {
+                "color": "#3399cc"
+            }
+        };
 
+        // Create a new Razorpay instance
+        var rzp1 = new Razorpay(options);
 
-
-    
-
+        // Open Razorpay payment modal on button click
+        document.getElementById('rzp-button1').onclick = function(e) {
+            rzp1.open();
+            e.preventDefault();
+        }
+    </script>
 </body>
 
 </html>

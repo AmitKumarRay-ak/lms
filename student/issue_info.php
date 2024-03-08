@@ -141,7 +141,7 @@ include("navbar.php");
         <?php
         $c = 0;
         if (isset($_SESSION['login_user'])) {
-            $sql = "SELECT student.username,roll,books.bid,name,authors,edition,issue,issue_book.return FROM student INNER JOIN issue_book ON student.username=issue_book.username INNER JOIN books ON issue_book.bid=books.bid WHERE issue_book.approv='yes' ORDER BY `issue_book`.`return` ASC";
+            $sql = "SELECT student.username, roll, books.bid, name, authors, edition, issue, issue_book.return FROM student INNER JOIN issue_book ON student.username=issue_book.username INNER JOIN books ON issue_book.bid=books.bid WHERE issue_book.approv='yes' GROUP BY books.bid ORDER BY `issue_book`.`return` ASC";
             $res = mysqli_query($db, $sql);
             ?>
         <table class="table table-bordered border-primary ms-2" style="width:98%">

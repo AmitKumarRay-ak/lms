@@ -157,7 +157,7 @@ include("navbar.php");
 
                 if ($diff > 0) {
                     $day = floor($diff / (60 * 60 * 24));
-                    $fine = $day*20;
+                    $fine = $day * 20;
                 }
             }
             $x = date("Y-m-d");
@@ -209,14 +209,20 @@ include("navbar.php");
             $ret = '<p style="color:yellow; background-color:green;">RETURNED</p>';
             $exp = '<p style="color:yellow; background-color:red;">EXPIRED</p>';
             if (isset($_POST['submit2'])) {
-                $sql = "SELECT student.username,roll,books.bid,name,authors,edition,approv,issue,issue_book.return FROM student INNER JOIN issue_book ON student.username=issue_book.username INNER JOIN books ON issue_book.bid=books.bid WHERE issue_book.approv ='$ret' ORDER BY `issue_book`.`return` DESC";
-                $res = mysqli_query($db, $sql);
+                $stmt = $db->prepare("SELECT DISTINCT student.username, roll, books.bid, name, authors, edition, approv, issue, issue_book.return FROM student INNER JOIN issue_book ON student.username=issue_book.username INNER JOIN books ON issue_book.bid=books.bid WHERE issue_book.approv = ? ORDER BY `issue_book`.`return` DESC");
+                $stmt->bind_param("s", $ret);
+                $stmt->execute();
+                $res = $stmt->get_result();
             } else if (isset($_POST['submit3'])) {
-                $sql = "SELECT student.username,roll,books.bid,name,authors,edition,approv,issue,issue_book.return FROM student INNER JOIN issue_book ON student.username=issue_book.username INNER JOIN books ON issue_book.bid=books.bid WHERE issue_book.approv ='$exp' ORDER BY `issue_book`.`return` DESC";
-                $res = mysqli_query($db, $sql);
+                $stmt = $db->prepare("SELECT DISTINCT student.username, roll, books.bid, name, authors, edition, approv, issue, issue_book.return FROM student INNER JOIN issue_book ON student.username=issue_book.username INNER JOIN books ON issue_book.bid=books.bid WHERE issue_book.approv = ? ORDER BY `issue_book`.`return` DESC");
+                $stmt->bind_param("s", $exp);
+                $stmt->execute();
+                $res = $stmt->get_result();
             } else {
-                $sql = "SELECT student.username,roll,books.bid,name,authors,edition,approv,issue,issue_book.return FROM student INNER JOIN issue_book ON student.username=issue_book.username INNER JOIN books ON issue_book.bid=books.bid WHERE issue_book.approv !='' and issue_book.approv !='yes' ORDER BY `issue_book`.`return` DESC";
-                $res = mysqli_query($db, $sql);
+                $stmt = $db->prepare("SELECT DISTINCT student.username, roll, books.bid, name, authors, edition, approv, issue, issue_book.return FROM student INNER JOIN issue_book ON student.username=issue_book.username INNER JOIN books ON issue_book.bid=books.bid WHERE issue_book.approv = ? ORDER BY `issue_book`.`return` DESC");
+                $stmt->bind_param("s", $exp);
+                $stmt->execute();
+                $res = $stmt->get_result();
             }
 
             // $res = mysqli_query($db, $sql);

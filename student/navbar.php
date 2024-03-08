@@ -114,7 +114,7 @@ session_start();
 
             if ($diff >= 0) {
                 $day = $day + floor($diff / (60 * 60 * 24));
-                echo $day;
+                // echo $day;
             }
         }
         $_SESSION['fine'] = $day * 20;

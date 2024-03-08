@@ -1,5 +1,6 @@
 <?php
-$db = mysqli_connect("localhost", "root", "", "library");
+// $db = mysqli_connect("localhost", "root", "", "library");
+include("connection.php");
 
 
 

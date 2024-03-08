@@ -155,7 +155,7 @@ include("navbar.php");
                                     <td><b>Status: </b></td>
                                     <td>
                                         <input class="form-control" type="text" name="status"
-                                            value="<?php echo $row['status'] ?>">
+                                            value="<?php echo $row['status'] ?>" placeholder="paid / not paid">
                                     </td>
                                 </tr>
                                 <div class="d-flex justify-content-center me-5 mt-5">
