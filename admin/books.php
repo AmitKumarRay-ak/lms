@@ -173,6 +173,7 @@ include("navbar.php");
                                 <th scope="col">Quantity</th>
                                 <th scope="col">Department</th>
                                 <th scope="col">Price</th>
+                                <th scope="col">Action</th>
                             </tr>
                             <?php
                             // $sql = "SELECT * FROM `books`";
@@ -206,6 +207,10 @@ include("navbar.php");
                                     </td>
                                     <td>
                                         <?php echo $data['price']; ?>
+                                    </td>
+                                    <td>
+                                        <a href="book_edit.php?id=<?php echo $data['bid']; ?>" class="btn btn-primary">Edit</a>
+                                        <a href="book_delete.php?id=<?php echo $data['bid']; ?>" class="btn btn-danger">Delete</a>
                                     </td>
                                 </tr>
 
@@ -242,6 +247,7 @@ include("navbar.php");
                             <th scope="col">Quantity</th>
                             <th scope="col">Department</th>
                             <th scope="col">Price</th>
+                            <th scope="col">Action</th>
                         </tr>
                         <?php
                         $sql = "SELECT * FROM `books` ORDER BY `name`";
@@ -276,6 +282,11 @@ include("navbar.php");
                                 <td>
                                     <?php echo $data['price']; ?>
                                 </td>
+                                <td>
+                                    <a href="book_edit.php?id=<?php echo $data['bid']; ?>" class="btn btn-primary">Edit</a>
+                                    <a href="book_delete.php?id=<?php echo $data['bid']; ?>" class="btn btn-danger">Delete</a>
+                                </td>
+
                             </tr>
 
                             <?php
@@ -290,6 +301,9 @@ include("navbar.php");
         <?php
     }
     ?>
+
+
+
 
 
 
