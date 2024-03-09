@@ -90,6 +90,46 @@ include("navbar.php");
         td {
             width: 10%;
         }
+
+
+        @media (min-width: 525px) and (max-width: 640px) {
+            body {
+                /* background-color: blue; */
+            }
+
+            .container {
+                width: 500px;
+            }
+
+            .sidenav a {
+                padding: 4px 4px 4px 16px;
+                text-decoration: none;
+                font-size: 20px;
+                color: white;
+                display: block;
+                transition: 0.3s;
+            }
+        }
+
+
+        @media (min-width: 250px) and (max-width: 525px) {
+            body {
+                /* background-color: red; */
+            }
+
+            .container {
+                width: 400px;
+            }
+
+            .sidenav a {
+                padding: 4px 4px 4px 16px;
+                text-decoration: none;
+                font-size: 20px;
+                color: white;
+                display: block;
+                transition: 0.3s;
+            }
+        }
     </style>
 </head>
 

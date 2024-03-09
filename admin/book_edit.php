@@ -71,10 +71,6 @@ if (isset($_POST['update'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <style>
-        body {
-            /* font-family: "Lato", sans-serif; */
-            font-family: "Comic Sans MS", cursive;
-        }
 
         .sidenav {
             height: 100%;
@@ -209,7 +205,7 @@ if (isset($_POST['update'])) {
                 <input class="rounded-pill ps-3" value="<?php echo $book_data['department']; ?>" type="text" id="" name="department" placeholder="Book Department"
                     required><br>
                 <input class="rounded-pill ps-3" value="<?php echo $book_data['price']; ?>" type="text" id="" name="price" placeholder="Price" required><br>
-                <input type="submit" name="update" value="Update">
+                <input class="btn btn-success" type="submit" name="update" value="Update">
 
             </div>
         </div>
