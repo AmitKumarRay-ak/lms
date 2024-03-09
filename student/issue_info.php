@@ -102,6 +102,15 @@ include("navbar.php");
             .container {
                 width: 500px;
             }
+
+            .sidenav a {
+                padding: 4px 4px 4px 16px;
+                text-decoration: none;
+                font-size: 20px;
+                color: white;
+                display: block;
+                transition: 0.3s;
+            }
         }
 
 
@@ -112,6 +121,15 @@ include("navbar.php");
 
             .container {
                 width: 400px;
+            }
+
+            .sidenav a {
+                padding: 4px 4px 4px 16px;
+                text-decoration: none;
+                font-size: 20px;
+                color: white;
+                display: block;
+                transition: 0.3s;
             }
         }
     </style>
