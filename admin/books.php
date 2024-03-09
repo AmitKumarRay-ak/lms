@@ -173,7 +173,8 @@ include("navbar.php");
                                 <th scope="col">Quantity</th>
                                 <th scope="col">Department</th>
                                 <th scope="col">Price</th>
-                                <th scope="col">Action</th>
+                                <th scope="col">Edit</th>
+                                <th scope="col">Delete</th>
                             </tr>
                             <?php
                             // $sql = "SELECT * FROM `books`";
@@ -209,8 +210,12 @@ include("navbar.php");
                                         <?php echo $data['price']; ?>
                                     </td>
                                     <td>
-                                    <a style="width: 100px;" href="book_edit.php?id=<?php echo $data['bid']; ?>" class="btn btn-primary">Edit</a>
-                                    <a style="width: 100px;" href="book_delete.php?id=<?php echo $data['bid']; ?>" class="btn btn-danger">Delete</a>
+                                        <a style="width: 100px;" href="book_edit.php?id=<?php echo $data['bid']; ?>"
+                                            class="btn btn-primary">Edit</a>
+                                    </td>
+                                    <td>
+                                        <a style="width: 100px;" href="book_delete.php?id=<?php echo $data['bid']; ?>"
+                                            class="btn btn-danger">Delete</a>
                                     </td>
                                 </tr>
 
@@ -247,7 +252,8 @@ include("navbar.php");
                             <th scope="col">Quantity</th>
                             <th scope="col">Department</th>
                             <th scope="col">Price</th>
-                            <th scope="col">Action</th>
+                            <th scope="col">Edit</th>
+                            <th scope="col">Delete</th>
                         </tr>
                         <?php
                         $sql = "SELECT * FROM `books` ORDER BY `name`";
@@ -283,8 +289,12 @@ include("navbar.php");
                                     <?php echo $data['price']; ?>
                                 </td>
                                 <td>
-                                    <a style="width: 100px;" href="book_edit.php?id=<?php echo $data['bid']; ?>" class="btn btn-primary">Edit</a>
-                                    <a style="width: 100px;" href="book_delete.php?id=<?php echo $data['bid']; ?>" class="btn btn-danger">Delete</a>
+                                    <a style="width: 100px;" href="book_edit.php?id=<?php echo $data['bid']; ?>"
+                                        class="btn btn-primary">Edit</a>
+                                </td>
+                                <td>
+                                    <a style="width: 100px;" href="book_delete.php?id=<?php echo $data['bid']; ?>"
+                                        class="btn btn-danger">Delete</a>
                                 </td>
 
                             </tr>
