@@ -61,6 +61,10 @@ include("navbar.php");
             height: 50px;
             background-color: #acc3e8;
         }
+        
+        
+        
+    
 
         @media screen and (max-height: 450px) {
             .sidenav {
