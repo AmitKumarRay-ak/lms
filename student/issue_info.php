@@ -186,7 +186,7 @@ include("navbar.php");
             $sql = "SELECT books.bid, books.name, authors, edition, issue, issue_book.return FROM student INNER JOIN issue_book ON student.username = issue_book.username INNER JOIN books ON issue_book.bid = books.bid WHERE issue_book.approv = 'yes' GROUP BY books.bid, books.name, authors, edition, issue, issue_book.return ORDER BY issue_book.return ASC";
             $res = mysqli_query($db, $sql);
             ?>
-        <div id="" style="overflow:scroll; height:400px;" class="m-1">
+        <div id="" style="overflow:scroll; height:440px;" class="m-1">
             <table class="table table-bordered border-primary ms-2" style="width:98%">
                 <tr class="table-warning">
                     <th scope="col">Book ID</th>
