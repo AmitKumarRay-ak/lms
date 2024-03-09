@@ -49,7 +49,6 @@ if (isset($_POST['update'])) {
         // echo "Book details updated successfully.";
         ?>
         <script>
-            // alert("Details Updated");
             window.location = "books.php";
         </script>
         <?php

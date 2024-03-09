@@ -209,8 +209,8 @@ include("navbar.php");
                                         <?php echo $data['price']; ?>
                                     </td>
                                     <td>
-                                        <a href="book_edit.php?id=<?php echo $data['bid']; ?>" class="btn btn-primary">Edit</a>
-                                        <a href="book_delete.php?id=<?php echo $data['bid']; ?>" class="btn btn-danger">Delete</a>
+                                    <a style="width: 100px;" href="book_edit.php?id=<?php echo $data['bid']; ?>" class="btn btn-primary">Edit</a>
+                                    <a style="width: 100px;" href="book_delete.php?id=<?php echo $data['bid']; ?>" class="btn btn-danger">Delete</a>
                                     </td>
                                 </tr>
 
@@ -283,8 +283,8 @@ include("navbar.php");
                                     <?php echo $data['price']; ?>
                                 </td>
                                 <td>
-                                    <a href="book_edit.php?id=<?php echo $data['bid']; ?>" class="btn btn-primary">Edit</a>
-                                    <a href="book_delete.php?id=<?php echo $data['bid']; ?>" class="btn btn-danger">Delete</a>
+                                    <a style="width: 100px;" href="book_edit.php?id=<?php echo $data['bid']; ?>" class="btn btn-primary">Edit</a>
+                                    <a style="width: 100px;" href="book_delete.php?id=<?php echo $data['bid']; ?>" class="btn btn-danger">Delete</a>
                                 </td>
 
                             </tr>
