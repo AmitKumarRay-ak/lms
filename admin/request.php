@@ -196,12 +196,21 @@ include("navbar.php");
                     <?php
 
                     if (isset($_SESSION['login_user'])) {
+                        // $sql = "SELECT student.username, roll, books.bid, name, authors, edition, status 
+                        //         FROM student 
+                        //         INNER JOIN issue_book ON student.username = issue_book.username 
+                        //         INNER JOIN books ON issue_book.bid = books.bid 
+                        //         WHERE issue_book.approv IS NULL OR issue_book.approv = ''
+                        //         GROUP BY books.bid";
+
                         $sql = "SELECT student.username, roll, books.bid, name, authors, edition, status 
-                        FROM student 
-                        INNER JOIN issue_book ON student.username = issue_book.username 
-                        INNER JOIN books ON issue_book.bid = books.bid 
-                        WHERE issue_book.approv IS NULL OR issue_book.approv = '' 
-                        GROUP BY student.username, roll, books.bid, name, authors, edition, status";
+                                FROM student 
+                                INNER JOIN issue_book ON student.username = issue_book.username 
+                                INNER JOIN books ON issue_book.bid = books.bid 
+                                WHERE issue_book.approv IS NULL OR issue_book.approv = '' 
+                                GROUP BY student.username, roll, books.bid, name, authors, edition, status";
+
+
 
                         $res = mysqli_query($db, $sql);
 

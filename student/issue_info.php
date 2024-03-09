@@ -90,6 +90,30 @@ include("navbar.php");
         td {
             width: 10%;
         }
+
+
+
+
+        @media (min-width: 525px) and (max-width: 640px) {
+            body {
+                /* background-color: blue; */
+            }
+
+            .container {
+                width: 500px;
+            }
+        }
+
+
+        @media (min-width: 250px) and (max-width: 525px) {
+            body {
+                /* background-color: red; */
+            }
+
+            .container {
+                width: 400px;
+            }
+        }
     </style>
 </head>
 
@@ -141,72 +165,67 @@ include("navbar.php");
         <?php
         $c = 0;
         if (isset($_SESSION['login_user'])) {
-            $sql = "SELECT student.username, roll, books.bid, name, authors, edition, issue, issue_book.return FROM student INNER JOIN issue_book ON student.username=issue_book.username INNER JOIN books ON issue_book.bid=books.bid WHERE issue_book.approv='yes' GROUP BY books.bid ORDER BY `issue_book`.`return` ASC";
+            $sql = "SELECT books.bid, books.name, authors, edition, issue, issue_book.return FROM student INNER JOIN issue_book ON student.username = issue_book.username INNER JOIN books ON issue_book.bid = books.bid WHERE issue_book.approv = 'yes' GROUP BY books.bid, books.name, authors, edition, issue, issue_book.return ORDER BY issue_book.return ASC";
             $res = mysqli_query($db, $sql);
             ?>
-        <table class="table table-bordered border-primary ms-2" style="width:98%">
-            <tr class="table-warning">
-                <th scope="col">Username</th>
-                <th scope="col">Roll NO</th>
-                <th scope="col">Book ID</th>
-                <th scope="col">Book Name</th>
-                <th scope="col">Author</th>
-                <th scope="col">Edition</th>
-                <th scope="col">Issue Date</th>
-                <th scope="col">Return Date</th>
-            </tr>
-        </table>
-
         <div id="" style="overflow:scroll; height:400px;" class="m-1">
-            <table class="table table-bordered border-primary">
-                <?php
-                while ($data = mysqli_fetch_array($res)) {
-                    $d = date("Y-m-d");
-                    if ($d > $data['return']) {
-                        $c = $c + 1;
-                        $var='<p style="color:yellow; background-color:red;">EXPIRED</p>';
-                        mysqli_query($db, "UPDATE issue_book SET approv='$var' where `return`='$data[return]' AND approv='yes' limit $c ");
-                        echo $d . "<br>";
+            <table class="table table-bordered border-primary ms-2" style="width:98%">
+                <tr class="table-warning">
+                    <th scope="col">Book ID</th>
+                    <th scope="col">Book Name</th>
+                    <th scope="col">Author</th>
+                    <th scope="col">Edition</th>
+                    <th scope="col">Issue Date</th>
+                    <th scope="col">Return Date</th>
+                </tr>
+                <!-- </table> -->
+
+                    <!-- <div id="" style="overflow:scroll; height:1px;" class="m-1"> -->
+                    <!-- <table class="table table-bordered border-primary"> -->
+                    <?php
+                    while ($data = mysqli_fetch_array($res)) {
+                        $d = date("Y-m-d");
+                        if ($d > $data['return']) {
+                            $c = $c + 1;
+                            $var = '<p style="color:yellow; background-color:red;">EXPIRED</p>';
+                            mysqli_query($db, "UPDATE issue_book SET approv='$var' where `return`='$data[return]' AND approv='yes' limit $c ");
+                            echo $d . "<br>";
+                        }
+                        ?>
+                        <tbody>
+                            <tr class="table-primary">
+
+                                <td>
+                                    <?php echo $data['bid']; ?>
+                                </td>
+                                <td>
+                                    <?php echo $data['name']; ?>
+                                </td>
+                                <td>
+                                    <?php echo $data['authors']; ?>
+                                </td>
+                                <td>
+                                    <?php echo $data['edition']; ?>
+                                </td>
+                                <td>
+                                    <?php echo $data['issue']; ?>
+                                </td>
+                                <td>
+                                    <?php echo $data['return']; ?>
+                                </td>
+                            </tr>
+                            <?php
                     }
                     ?>
-                <tbody>
-                    <tr class="table-primary">
-                        <th scope="row">
-                            <?php echo $data['username']; ?>
-                        </th>
-                        <td>
-                            <?php echo $data['roll']; ?>
-                        </td>
-                        <td>
-                            <?php echo $data['bid']; ?>
-                        </td>
-                        <td>
-                            <?php echo $data['name']; ?>
-                        </td>
-                        <td>
-                            <?php echo $data['authors']; ?>
-                        </td>
-                        <td>
-                            <?php echo $data['edition']; ?>
-                        </td>
-                        <td>
-                            <?php echo $data['issue']; ?>
-                        </td>
-                        <td>
-                            <?php echo $data['return']; ?>
-                        </td>
-                    </tr>
-                    <?php
-                }
-                ?>
-                </tbody>
+                    </tbody>
+                    <!-- </table> -->
+            </div>
             </table>
-        </div>
-        <?php
+            <?php
         } else {
             ?>
-        <h3 style="text-align:center;">Login First to Seen Information of Approved Book</h3>
-        <?php
+            <h3 style="text-align:center;">Login First to Seen Information of Approved Book</h3>
+            <?php
         }
         ?>
     </div>
