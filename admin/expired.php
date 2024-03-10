@@ -91,6 +91,26 @@ include("navbar.php");
             width: 10%;
         }
 
+        @media (min-width: 640px) and (max-width: 777px) {
+            body {
+                /* background-color: red; */
+            }
+
+            .x-scroller {
+                overflow-x: scroll;
+                overflow-y: hidden;
+                width: 98%;
+            }
+
+            tr th {
+                font-size: 10px;
+            }
+
+            tr td {
+                font-size: 10px;
+            }
+        }
+
 
         @media (min-width: 525px) and (max-width: 640px) {
             body {
@@ -108,6 +128,21 @@ include("navbar.php");
                 color: white;
                 display: block;
                 transition: 0.3s;
+            }
+
+
+            .x-scroller {
+                overflow-x: scroll;
+                overflow-y: hidden;
+                width: 98%;
+            }
+
+            tr th {
+                font-size: 10px;
+            }
+
+            tr td {
+                font-size: 10px;
             }
         }
 
@@ -128,6 +163,21 @@ include("navbar.php");
                 color: white;
                 display: block;
                 transition: 0.3s;
+            }
+
+
+            .x-scroller {
+                overflow-x: scroll;
+                overflow-y: hidden;
+                width: 98%;
+            }
+
+            tr th {
+                font-size: 10px;
+            }
+
+            tr td {
+                font-size: 10px;
             }
         }
     </style>
@@ -222,7 +272,7 @@ include("navbar.php");
                 </div>
                 <!------------------------end RETURN and EXPIRED button code --------------------->
             </form>
-
+            <br>
 
             <form action="" method="POST" name="form1">
                 <div class="d-flex justify-content-end">
@@ -236,6 +286,7 @@ include("navbar.php");
                     </div>
                 </div>
             </form>
+            <br>
         </div>
         <!--------------------------------- END search box for finding request book ------------------------------------->
         <?php
@@ -265,61 +316,58 @@ include("navbar.php");
                 $res = $stmt->get_result();
             }
 
-            // $res = mysqli_query($db, $sql);
-            ?>
-        <table class="table table-bordered border-primary ms-2 m-2" style="width:98%">
-            <tr class="table-warning">
-                <th scope="col">Username</th>
-                <th scope="col">Roll NO</th>
-                <th scope="col">Book ID</th>
-                <th scope="col">Book Name</th>
-                <th scope="col">Author</th>
-                <th scope="col">Edition</th>
-                <th scope="col">Approve</th>
-                <th scope="col">Issue Date</th>
-                <th scope="col">Return Date</th>
-            </tr>
-        </table>
 
-        <div id="" style="overflow:scroll; height:350px;" class="m-1">
-            <table class="table table-bordered border-primary">
+            ?>
+        <div class="x-scroller">
+            <table class="table table-bordered border-primary ms-2 m-2" style="width:98%">
+                <tr class="table-warning">
+                    <th scope="col">Username</th>
+                    <th scope="col">Roll NO</th>
+                    <th scope="col">Book ID</th>
+                    <th scope="col">Book Name</th>
+                    <th scope="col">Author</th>
+                    <th scope="col">Edition</th>
+                    <th scope="col">Approve</th>
+                    <th scope="col">Issue Date</th>
+                    <th scope="col">Return Date</th>
+                </tr>
+
+
                 <?php
                 while ($data = mysqli_fetch_array($res)) {
                     ?>
-                <tbody>
-                    <tr class="table-primary">
-                        <th scope="row">
-                            <?php echo $data['username']; ?>
-                        </th>
-                        <td>
-                            <?php echo $data['roll']; ?>
-                        </td>
-                        <td>
-                            <?php echo $data['bid']; ?>
-                        </td>
-                        <td>
-                            <?php echo $data['name']; ?>
-                        </td>
-                        <td>
-                            <?php echo $data['authors']; ?>
-                        </td>
-                        <td>
-                            <?php echo $data['edition']; ?>
-                        </td>
-                        <td>
-                            <?php echo $data['approv']; ?>
-                        </td>
-                        <td>
-                            <?php echo $data['issue']; ?>
-                        </td>
-                        <td>
-                            <?php echo $data['return']; ?>
-                        </td>
-                    </tr>
-                    <?php
+                <tr class="table-primary">
+                    <th scope="row">
+                        <?php echo $data['username']; ?>
+                    </th>
+                    <td>
+                        <?php echo $data['roll']; ?>
+                    </td>
+                    <td>
+                        <?php echo $data['bid']; ?>
+                    </td>
+                    <td>
+                        <?php echo $data['name']; ?>
+                    </td>
+                    <td>
+                        <?php echo $data['authors']; ?>
+                    </td>
+                    <td>
+                        <?php echo $data['edition']; ?>
+                    </td>
+                    <td>
+                        <?php echo $data['approv']; ?>
+                    </td>
+                    <td>
+                        <?php echo $data['issue']; ?>
+                    </td>
+                    <td>
+                        <?php echo $data['return']; ?>
+                    </td>
+                </tr>
+                <?php
                 }
                 ?>
-                </tbody>
             </table>
         </div>
         <?php
