@@ -4,32 +4,72 @@ include("navbar.php");
 ?>
 
 <!-- php code for signup -->
-<?php
-if (isset($_POST["submit"])) {
-    $count = 0;
-    $sql = "SELECT username FROM student";
-    $res = mysqli_query($db, $sql);
 
-    while ($row = mysqli_fetch_assoc($res)) {
-        if ($row['username'] == $_POST['username']) {
-            $count = $count + 1;
+<?php
+
+if (isset($_POST['submit'])) {
+    $user_exist_quary = "SELECT * FROM `student` WHERE `username`='$_POST[username]' OR `email`='$_POST[email]' ";
+    $result = mysqli_query($db, $user_exist_quary);
+
+    if ($result) {
+
+        if (mysqli_num_rows($result) > 0) {  // it will be excuted if username or email is already taken
+
+            $result_fetch = mysqli_fetch_assoc($result);
+
+            // User has allready taken username or email
+            if ($result_fetch['username'] == $_POST['username']) {
+
+                // error for username allready resister
+                echo "
+                    <script>
+                    alert('$result_fetch[username] - User Has Allready Taken Username');
+                    window.location='../login.php';
+                    </script>
+                    ";
+            } else {
+
+                // error for username allready resister
+                echo "
+                    <script>
+                    alert('$result_fetch[email] - Email Allready Register');
+                    window.location='../login.php';
+                    </script>
+                    ";
+            }
+
+        } else {  // it is excute when no one has taken username or email before
+
+            $password = password_hash($_POST['password'], PASSWORD_BCRYPT);
+            $query = "INSERT INTO `student`(`first`, `last`, `username`, `password`, `roll`, `email`, `contact`, `pic`) VALUES ('$_POST[first]','$_POST[last]','$_POST[username]','$password','$_POST[roll]','$_POST[email]','$_POST[contact]','p.png')";
+            if (mysqli_query($db, $query)) {
+
+                // if data inserted successfully
+                echo "
+                <script>
+                alert('Resistration Successfull');
+                window.location='../login.php';
+                </script>
+                ";
+            } else {
+
+                // if data cannot be inserted
+                echo "
+                <script>
+                alert('Cannot Run Query');
+                window.location='../login.php';
+                </script>
+                ";
+            }
         }
-    }
-    if ($count == 0) {
-        mysqli_query($db, "INSERT INTO `student`(`first`, `last`, `username`, `password`, `roll`, `email`, `contact`,`pic`) VALUES ('$_POST[first]','$_POST[last]','$_POST[username]','$_POST[password]','$_POST[roll]','$_POST[email]','$_POST[contact]','p.png');");
-        ?>
-        <script>
-            alert("Registration Successfull");
-            window.location="../login.php";
-        </script>
-        <?php
+
     } else {
-        ?>
+        echo "
         <script>
-            alert("The Username Allready Exist");
-            window.location="../login.php";
+        alert('Cannot Run Query');
+        window.location='../login.php';
         </script>
-        <?php
+        ";
     }
 }
 ?>
@@ -49,6 +89,12 @@ if (isset($_POST["submit"])) {
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 
     <title>Registration</title>
+    
+    <style>
+        body::-webkit-scrollbar{
+            display: none;
+        }
+    </style>
 </head>
 
 <body>
@@ -145,9 +191,8 @@ if (isset($_POST["submit"])) {
                                                     up</button>
                                             </div>
                                             <div class="form-group mt-2">
-                                                <label class="ms-3 mt-2" for="">Allready have an account  : </label>
-                                                <button class="badge rounded-pill text-bg-light"><a
-                                                        href="../login.php"
+                                                <label class="ms-3 mt-2" for="">Allready have an account : </label>
+                                                <button class="badge rounded-pill text-bg-light"><a href="../login.php"
                                                         class="text-decoration-none">Login</a></button>
                                             </div>
                                         </div>

@@ -71,6 +71,10 @@ if (isset($_POST['update'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <style>
+    
+        body::-webkit-scrollbar{
+            display: none;
+        }
 
         .sidenav {
             height: 100%;

@@ -14,6 +14,11 @@ include("navbar.php");
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Profile edit</title>
     <style>
+    
+        body::-webkit-scrollbar{
+            display: none;
+        }
+    
         .tb1 {
             width: 40%;
         }

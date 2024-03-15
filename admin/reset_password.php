@@ -24,6 +24,12 @@ include("navbar.php");
 
     <title>update password</title>
     <style>
+    
+    
+        body::-webkit-scrollbar{
+            display: none;
+        }
+        
         .container1 {
             background-color: #d399e8;
             height: 660px;

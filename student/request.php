@@ -14,6 +14,11 @@ include("navbar.php");
         body {
             font-family: "Lato", sans-serif;
         }
+        
+        
+        body::-webkit-scrollbar{
+            display: none;
+        }
 
         .sidenav {
             height: 100%;

@@ -54,6 +54,11 @@ if (isset($_POST['submit'])) {
             /* font-family: "Lato", sans-serif; */
             font-family: "Comic Sans MS", cursive;
         }
+        
+        
+        body::-webkit-scrollbar{
+            display: none;
+        }
 
         .sidenav {
             height: 100%;

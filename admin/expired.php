@@ -17,6 +17,10 @@ include("navbar.php");
             font-family: 'Times New Roman', Times, serif;
         }
 
+        body::-webkit-scrollbar{
+            display: none;
+        }
+
         .sidenav {
             height: 100%;
             margin-top: 65px;
